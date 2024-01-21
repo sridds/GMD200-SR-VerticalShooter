@@ -3,11 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 playerSpeed;
-
-    [SerializeField]
-    private float acceleration = 0.5f;
-    private float maxAccel = 50;
+    private Vector2 speed;
 
     // internal variables
     private Vector2 playerInput;
@@ -41,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
-        Vector2 wishVel = playerInput * playerSpeed;
+        Vector2 wishVel = playerInput * speed;
 
         rb.velocity = wishVel;
     }
