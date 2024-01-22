@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 960757426}
   - component: {fileID: 960757429}
   - component: {fileID: 960757425}
+  - component: {fileID: 960757430}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -639,6 +640,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &960757430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960757424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb43264a49824e21b94e0a624dd358e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 50
 --- !u!1 &1641497878
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +776,7 @@ GameObject:
   - component: {fileID: 1781605330}
   - component: {fileID: 1781605329}
   - component: {fileID: 1781605331}
+  - component: {fileID: 1781605332}
   m_Layer: 0
   m_Name: Enemy Test
   m_TagString: Untagged
@@ -887,6 +902,19 @@ MonoBehaviour:
   _timeBetweenBursts: 0.05
   _restTime: 5
   _spinDuringFire: 1
+--- !u!114 &1781605332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781605325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb43264a49824e21b94e0a624dd358e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 250
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
