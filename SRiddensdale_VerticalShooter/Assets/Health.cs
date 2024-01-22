@@ -8,15 +8,15 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     [SerializeField, Min(1)]
     private int _maxHealth;
 
-    
-    public int health { get; private set; }
+    public int CurrentHealth { get; private set; }
+
     // events
     public delegate void HealthUpdate(int oldHealth, int newHealth);
     public HealthUpdate OnHealthUpdate;
 
     private void Start()
     {
-        health = _maxHealth;
+        CurrentHealth = _maxHealth;
     }
 
     /// <summary>
@@ -26,10 +26,10 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     public void TakeDamage(int damageAmount)
     {
         // get the old and new health
-        int oldHealth = health;
+        int oldHealth = CurrentHealth;
 
-        health -= damageAmount;
-        int newHealth = health;
+        CurrentHealth -= damageAmount;
+        int newHealth = CurrentHealth;
 
         // call events
         OnHealthUpdate?.Invoke(oldHealth, newHealth);
@@ -42,10 +42,10 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     public void Heal(int healAmount)
     {
         // get the old and new health
-        int oldHealth = health;
+        int oldHealth = CurrentHealth;
 
-        health += health;
-        int newHealth = health;
+        CurrentHealth += CurrentHealth;
+        int newHealth = CurrentHealth;
 
         // call events
         OnHealthUpdate?.Invoke(oldHealth, newHealth);
