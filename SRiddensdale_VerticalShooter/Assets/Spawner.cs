@@ -52,7 +52,7 @@ public class Spawner : MonoBehaviour
     private float _timeBetweenBursts;
     [SerializeField, Min(0)]
     private float _restTime;
-    [SerializeField, Tooltip("Determines whether the cone of fire will spin / aim while firing shots")]
+    [SerializeField, Tooltip("Determines whether the cone of fire will spin / aim while firing shotsw ")]
     private bool _spinDuringFire;
 
     // private fields

@@ -28,12 +28,19 @@ public class Bullet : MonoBehaviour
 
     [Header("Speed Settings")]
     [SerializeField]
+    private bool _doSpeedOverCurve;
+    [ShowIf(nameof(_doSpeedOverCurve))]
+    [SerializeField]
     private AnimationCurve _speedOverTime;
     [HideIf(nameof(_useLifetime))]
     [SerializeField]
     private float _speedCurveEvaluationTime;
+    [ShowIf(nameof(_doSpeedOverCurve))]
     [SerializeField]
     private bool _useLifetime;
+    [ShowIf(nameof(_doSpeedOverCurve))]
+    [SerializeField, Tooltip("This will be the resulting speed after applying the speed curve")]
+    private float _targetEndSpeed;
 
     [Header("Homing")]
     [SerializeField]
@@ -41,14 +48,16 @@ public class Bullet : MonoBehaviour
     [ShowIf(nameof(_homingEnabled))]
     [SerializeField]
     private float _homingTime;
+    [ShowIf(nameof(_homingEnabled))]
+    [SerializeField]
+    private float _homingStrength;
 
-
-    float aliveTime;
-    float speedFactor;
-    Vector2 bulletVel = Vector2.zero;
-    Vector3 pos = Vector3.zero;
-    bool isLaunched;
-
+    private float aliveTime;
+    private float speedFactor;
+    private Vector2 dir = Vector2.zero;
+    private Vector3 pos = Vector3.zero;
+    private bool isLaunched;
+    private Transform target;
 
     void Update()
     {
@@ -62,18 +71,40 @@ public class Bullet : MonoBehaviour
             pos += transform.right * Time.deltaTime * speedFactor;
             transform.position = pos + transform.up * curveValue;
         }
-        else if(_useMovementCurve){
+        else if(_useMovementCurve && !_homingEnabled){
             // allows the movement to make cool patterns and cave in on itself with the correct settings. you can get flowers and stuff
-            rb.velocity = bulletVel.normalized * speedFactor * curveValue;
+            rb.velocity = dir * speedFactor * curveValue;
         }
-        else {
-            rb.velocity = bulletVel.normalized * speedFactor;
+        else if(!_homingEnabled){
+            rb.velocity = dir * speedFactor;
         }
 
         // increment the alive timer
         aliveTime += Time.deltaTime;
     }
 
+    private void FixedUpdate()
+    {
+        if (_homingEnabled && aliveTime < _homingTime)
+        {
+            HomeInOnTarget();
+        }
+    }
+
+    /// <summary>
+    /// Homes in the object towards the target
+    /// </summary>
+    private void HomeInOnTarget()
+    {
+        Vector2 direction = (Vector2)target.position - rb.position;
+        direction.Normalize();
+
+        float rot = Vector3.Cross(direction, transform.right).z;
+        rb.angularVelocity = -rot * _homingStrength;
+
+        rb.velocity = transform.right * speedFactor;
+    }
+    
     /// <summary>
     /// Sets up all variables for the bullet
     /// </summary>
@@ -84,13 +115,17 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // set up the initial variables
-        bulletVel = vel;
-        speedFactor = bulletVel.magnitude;
-        rb.velocity = bulletVel;
+        dir = vel.normalized;
+        speedFactor = vel.magnitude;
+
+        rb.velocity = vel;
         pos = transform.position;
         isLaunched = true;
 
-        StartCoroutine(EvaluateSpeedOverTime());
+        target = FindObjectOfType<PlayerMovement>().transform;
+
+        // must be enabled before evaluating speed
+        if(_doSpeedOverCurve) StartCoroutine(EvaluateSpeedOverTime());
         // ensure the object gets destroyed. replace this with a pooling system later down the line
         Destroy(gameObject, _lifeTime);
     }
@@ -113,7 +148,7 @@ public class Bullet : MonoBehaviour
             curveValue = _speedOverTime.Evaluate(elapsedTime / duration);
 
             // use an exponential equation rather than just lerping normally bc frame dependency
-            speedFactor = Mathf.Lerp(speedFactor, 0, 1 - Mathf.Pow(1 - curveValue, Time.deltaTime));
+            speedFactor = Mathf.Lerp(speedFactor, _targetEndSpeed, 1 - Mathf.Pow(1 - curveValue, Time.deltaTime));
             yield return null;
         }
     }
