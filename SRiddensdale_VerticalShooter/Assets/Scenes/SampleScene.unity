@@ -829,13 +829,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781605325}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.38268277, w: 0.92387986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.045725822, y: -0.18432522, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1781605331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -850,8 +850,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletForce: 15
   _bulletPrefab: {fileID: -3255435354877926624, guid: e5d81968ea65a4609b035cf498d57b54, type: 3}
-  _spinRate: 0
-  _useCurve: 1
+  _spinRate: 15
+  _useCurve: 0
   _curveSpeed: 1
   _curveAmplitude: 50
   _curve:
@@ -878,11 +878,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  _aimAtTarget: 0
+  _onlyApplyCurveWhileFiring: 0
+  _aimAtTarget: 1
   _radius: 3
   _burstCount: 5
   _projectilesPerBurst: 6
-  _angleSpread: 35
+  _angleSpread: 201
   _timeBetweenBursts: 0.05
   _restTime: 0.5
 --- !u!1660057539 &9223372036854775807
