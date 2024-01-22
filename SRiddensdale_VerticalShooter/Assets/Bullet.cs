@@ -56,6 +56,7 @@ public class Bullet : MonoBehaviour
         // evaluate along curve to get value
         float curveValue = (_movementCurve.Evaluate(_curveEvaluationSpeed * aliveTime) * _curveEvaluationAmplitude);
 
+        // this if statement is rough and dirty but it works :/
         if (_curveAlongVelocityPath && _useMovementCurve) {
             // adjust position to follow curve
             pos += transform.right * Time.deltaTime * speedFactor;
@@ -94,22 +95,26 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, _lifeTime);
     }
 
+    /// <summary>
+    /// As the bullet continues to live, change the speed factor based on the curve.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator EvaluateSpeedOverTime()
     {
         float elapsedTime = 0.0f;
+        // determine the duration based on whether the bullet relies on lifeTime for evaluating speed
         float duration = _useLifetime ? _lifeTime : _speedCurveEvaluationTime;
         float curveValue = _speedOverTime.Evaluate(0.0f);
 
         while(elapsedTime < duration)
         {
+            // increment timer and continue evaluating the curve
             elapsedTime += Time.deltaTime;
             curveValue = _speedOverTime.Evaluate(elapsedTime / duration);
 
+            // use an exponential equation rather than just lerping normally bc frame dependency
             speedFactor = Mathf.Lerp(speedFactor, 0, 1 - Mathf.Pow(1 - curveValue, Time.deltaTime));
-            //speedFactor *= curveValue;
             yield return null;
         }
-
-        yield return null;
     }
 }
