@@ -8,8 +8,8 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     [SerializeField, Min(1)]
     private int _maxHealth;
 
-    private int health;
-
+    
+    public int health { get; private set; }
     // events
     public delegate void HealthUpdate(int oldHealth, int newHealth);
     public HealthUpdate OnHealthUpdate;
