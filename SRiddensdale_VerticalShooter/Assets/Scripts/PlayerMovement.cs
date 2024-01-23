@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static PlayerMovement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,13 +18,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _dashCooldownTime = 1.5f;
 
+    // accessors
+    public float DashTime { get { return _dashTime; } }
+
     // internal variables
     private Vector2 playerInput;
     private Rigidbody2D rb;
-
     private bool dashing;
-    private Vector2 lastPlayerInput;
 
+    // events
+    public delegate void DashStart();
+    public DashStart OnDashStart;
+
+    // corotuines
     private Coroutine activeDashCoroutine = null;
 
     private void Start()
@@ -48,31 +55,36 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && activeDashCoroutine == null) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && activeDashCoroutine == null && playerInput != Vector2.zero) {
             activeDashCoroutine = StartCoroutine(Dash());
         }
 
         // get input and normalize it, storing the result in the playerInput Vector2 variable
         playerInput = new Vector2(x, y).normalized;
-
-        // cache last player input
-        if (playerInput != Vector2.zero) lastPlayerInput = playerInput;
     }
 
     private void ApplyMovement()
     {
+        // don't overwrite velocity if dashing
         if (dashing) return;
         Vector2 wishVel = playerInput * _speed;
 
         rb.velocity = wishVel;
     }
 
+    /// <summary>
+    /// Handles the dash mechanic along with the dash cooldown in the same coroutine
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator Dash()
     {
-        dashing = false;
-        rb.velocity = lastPlayerInput * _dashSpeed;
-        yield return new WaitForSeconds(_dashTime);
+        // call dash event
+        OnDashStart?.Invoke();
+
         dashing = true;
+        rb.velocity = playerInput * _dashSpeed;
+        yield return new WaitForSeconds(_dashTime);
+        dashing = false;
 
         yield return new WaitForSeconds(_dashCooldownTime);
         activeDashCoroutine = null;

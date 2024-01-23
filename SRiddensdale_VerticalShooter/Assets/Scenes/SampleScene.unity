@@ -502,7 +502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ce7fed7940c74240bfe0f4cbb392e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 10, y: 10}
+  _speed: {x: 10, y: 10}
+  _allowDash: 1
+  _dashSpeed: 25
+  _dashTime: 0.25
+  _dashCooldownTime: 1.5
 --- !u!50 &960757426
 Rigidbody2D:
   serializedVersion: 4
@@ -656,6 +660,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 50
+  _doIFrames: 1
+  _maxIFrames: 15
+  _IFrameInterval: 0.05
+  _blinker: {fileID: 960757427}
 --- !u!114 &960757431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,6 +694,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerGun: {fileID: 1062052190}
+  _playerMovement: {fileID: 960757425}
+  _playerHealth: {fileID: 960757430}
 --- !u!1 &1062052188
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1781605329
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -958,6 +968,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 250
+  _doIFrames: 1
+  _maxIFrames: 15
+  _IFrameInterval: 0.05
+  _blinker: {fileID: 1781605329}
 --- !u!61 &1781605333
 BoxCollider2D:
   m_ObjectHideFlags: 0

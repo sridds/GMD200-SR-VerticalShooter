@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
+using System.Collections;
 
 public class Health : MonoBehaviour, IDamagable, IHealable
 {
@@ -8,7 +8,23 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     [SerializeField, Min(1)]
     private int _maxHealth;
 
+    [Header("IFrames")]
+    [SerializeField]
+    private bool _doIFrames = true;
+
+    [ShowIf(nameof(_doIFrames))]
+    [SerializeField]
+    private int _maxIFrames = 30;
+    [ShowIf(nameof(_doIFrames))]
+    [SerializeField]
+    private float _IFrameInterval = 0.05f;
+    [ShowIf(nameof(_doIFrames))]
+    [SerializeField]
+    private SpriteRenderer _blinker;
+
     public int CurrentHealth { get; private set; }
+
+    private bool canDamage = true;
 
     // events
     public delegate void HealthUpdate(int oldHealth, int newHealth);
@@ -25,11 +41,16 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     /// <param name="damageAmount"></param>
     public void TakeDamage(int damageAmount)
     {
+        if (!canDamage) return;
+
         // get the old and new health
         int oldHealth = CurrentHealth;
 
         CurrentHealth -= damageAmount;
         int newHealth = CurrentHealth;
+
+        // call the iframes coroutine
+        if (_doIFrames) StartCoroutine(HandleIFrames(_maxIFrames, _IFrameInterval));
 
         // call events
         OnHealthUpdate?.Invoke(oldHealth, newHealth);
@@ -49,6 +70,38 @@ public class Health : MonoBehaviour, IDamagable, IHealable
 
         // call events
         OnHealthUpdate?.Invoke(oldHealth, newHealth);
+    }
+
+    /// <summary>
+    /// An external call to start IFrames. Stops the current IFrame coroutine.
+    /// </summary>
+    /// <param name="iframes"></param>
+    /// <param name="interval"></param>
+    public void CallIFrames(int iframes, float interval) {
+        StopAllCoroutines();
+
+        StartCoroutine(HandleIFrames(iframes, interval));
+    }
+
+    /// <summary>
+    /// Handles the IFrames (another amazing summary by yours truly)
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator HandleIFrames(int iframes, float interval)
+    {
+        canDamage = false;
+        // blink the sprite renderer for the set number of iframes
+        for (int i = 0; i < iframes; i++)
+        {
+            yield return new WaitForSeconds(interval);
+            _blinker.enabled = false;
+            yield return new WaitForSeconds(interval);
+            _blinker.enabled = true;
+        }
+        // just in case its still disabled
+        _blinker.enabled = true;
+
+        canDamage = true;
     }
 }
 
