@@ -9,6 +9,8 @@ public class Bullet : MonoBehaviour
     [Header("Bullet Settings")]
     [SerializeField]
     private float _lifeTime;
+    [SerializeField]
+    private int _damageAmt;
 
     [Header("Movement Settings")]
     [SerializeField, Tooltip("Allows the velocity / position to be modified directly to follow a custom curve")]
@@ -150,6 +152,16 @@ public class Bullet : MonoBehaviour
             // use an exponential equation rather than just lerping normally bc frame dependency
             speedFactor = Mathf.Lerp(speedFactor, _targetEndSpeed, 1 - Mathf.Pow(1 - curveValue, Time.deltaTime));
             yield return null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // take damage when hitting damagable
+        if(collision.TryGetComponent<IDamagable>(out IDamagable damagable))
+        {
+            damagable.TakeDamage(_damageAmt);
+            Destroy(gameObject);
         }
     }
 }

@@ -155,7 +155,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   _speedCurveEvaluationTime: 2
   _useLifetime: 1
-  _targetEndSpeed: 0
+  _targetEndSpeed: 15
   _homingEnabled: 1
   _homingTime: 2
   _homingStrength: 200
