@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using static ScriptableSpawner;
 
 /// <summary>
 /// Thanks to this video for helping out with the cone of influence
@@ -16,52 +17,10 @@ public class Spawner : MonoBehaviour
         ControlledByScript,
     }
 
-    [Header("Bullet Settings")]
     [SerializeField]
-    private float _bulletForce;
-    [SerializeField]
-    private Bullet _bulletPrefab;
+    private ScriptableSpawner _data;
     [SerializeField, Tooltip("Determines whether the spawn is handled by this script or by another script. This allows flexibility for enemies and player")]
     private SpawnCall _spawnCall;
-
-    [Header("Fire Motion")]
-    [HideIf(nameof(_aimAtTarget))]
-    [SerializeField]
-    private float _spinRate;
-    [SerializeField]
-    private bool _useCurve;
-
-    [Header("Curve Settings")]
-    [SerializeField, Tooltip("Determines how much sin is added to the spin angle")]
-    [ShowIf(nameof(_useCurve))]
-    private float _curveSpeed;
-    [SerializeField]
-    [ShowIf(nameof(_useCurve))]
-    private float _curveAmplitude;
-    [SerializeField]
-    [ShowIf(nameof(_useCurve))]
-    private AnimationCurve _curve = new AnimationCurve(new Keyframe(0, -1), new Keyframe(1, 1));
-    [SerializeField]
-    [ShowIf(nameof(_useCurve))]
-    private bool _onlyApplyCurveWhileFiring = true;
-
-    [Header("Fire Settings")]
-    [SerializeField]
-    private bool _aimAtTarget;
-    [SerializeField, Min(0)]
-    private float _radius;
-    [SerializeField, Min(0)]
-    private int _burstCount;
-    [SerializeField, Min(0)]
-    private int _projectilesPerBurst;
-    [SerializeField, Range(0, 360)]
-    private int _angleSpread;
-    [SerializeField, Min(0)]
-    private float _timeBetweenBursts;
-    [SerializeField, Min(0)]
-    private float _restTime;
-    [SerializeField, Tooltip("Determines whether the cone of fire will spin / aim while firing shotsw ")]
-    private bool _spinDuringFire;
 
     // private fields
     Quaternion angleRot = Quaternion.identity;
@@ -73,7 +32,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         // ensure curve is pingpong
-        _curve.postWrapMode = WrapMode.PingPong;
+        _data.Curve.postWrapMode = WrapMode.PingPong;
         target = FindObjectOfType<PlayerMovement>().transform;
     }
 
@@ -89,12 +48,12 @@ public class Spawner : MonoBehaviour
     private void UpdateAngularMotion()
     {
         // spin rate has no effect if targetting something
-        if(!_aimAtTarget) angleRot *= Quaternion.Euler(0, 0, _spinRate * Time.deltaTime);
+        if(!_data.AimAtTarget) angleRot *= Quaternion.Euler(0, 0, _data.SpinRate * Time.deltaTime);
 
         // apply curve rot
-        if (_onlyApplyCurveWhileFiring && !firing) return;
+        if (_data.OnlyApplyCurveWhileFiring && !firing) return;
 
-        if (_useCurve) angleRot *= Quaternion.Euler(0, 0, (_curve.Evaluate(Time.time * _curveSpeed) * Time.deltaTime * _curveAmplitude));
+        if (_data.UseCurve) angleRot *= Quaternion.Euler(0, 0, (_data.Curve.Evaluate(Time.time * _data.CurveSpeed) * Time.deltaTime * _data.CurveAmplitude));
     }
 
     public void Fire()
@@ -113,20 +72,23 @@ public class Spawner : MonoBehaviour
         // an initial update of the fire cone to get the direction of each bullet
         UpdateCone(out startAngle, out currentAngle, out angleStep);
 
-        for (int i = 0; i < _burstCount; i++)
+        for (int i = 0; i < _data.BurstCount; i++)
         {
-            for(int j = 0; j < _projectilesPerBurst; j++)
+            for(int j = 0; j < _data.ProjectilesPerBurst; j++)
             {
+                if(_data.ProjectilesPerBurst == 1) {
+                    currentAngle = 90;
+                }
                 Vector2 pos = GetBulletSpawnPos(currentAngle);
 
                 // fire a new bullet
-                GameObject newBullet = Instantiate(_bulletPrefab, pos, Quaternion.identity).gameObject;
+                GameObject newBullet = Instantiate(_data.BulletPrefab, pos, Quaternion.identity).gameObject;
                 newBullet.transform.right = newBullet.transform.position - transform.position;
 
                 // update velocity of bullets
                 if(newBullet.TryGetComponent<Bullet>(out Bullet bullet)) {
                     //rb.velocity = newBullet.transform.right * _bulletForce;
-                    bullet.Launch(newBullet.transform.right * _bulletForce);
+                    bullet.Launch(newBullet.transform.right * _data.BulletForce);
                 }
 
                 // increment current angle by the step
@@ -135,14 +97,14 @@ public class Spawner : MonoBehaviour
 
             currentAngle = startAngle;
 
-            yield return new WaitForSeconds(_timeBetweenBursts);
+            yield return new WaitForSeconds(_data.TimeBetweenBursts);
 
             // continue updating the cone aim as shots fire
-            if (_spinDuringFire) UpdateCone(out startAngle, out currentAngle, out angleStep);
+            if (_data.SpinDuringFire) UpdateCone(out startAngle, out currentAngle, out angleStep);
         }
 
         firing = false;
-        yield return new WaitForSeconds(_restTime);
+        yield return new WaitForSeconds(_data.RestTime);
 
         activeFireCoroutine = null;
     }
@@ -158,7 +120,7 @@ public class Spawner : MonoBehaviour
         Vector2 dir = angleRot * (target.transform.position - transform.position);
 
         // get target direciton based on whether aim at target is selected
-        Vector2 targetDir = _aimAtTarget ? dir : targetDir = angleRot * Vector2.up;
+        Vector2 targetDir = _data.AimAtTarget ? dir : targetDir = angleRot * Vector2.up;
         float targetAngle = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg;
 
         startAngle = targetAngle;
@@ -167,10 +129,12 @@ public class Spawner : MonoBehaviour
         float halfAngleSpread = 0.0f;
         angleStep = 0.0f;
 
-        if (_angleSpread != 0)
+        if (_data.AngleSpread != 0)
         {
-            angleStep = _angleSpread / (_projectilesPerBurst - 1);
-            halfAngleSpread = _angleSpread / 2f;
+            if (_data.ProjectilesPerBurst != 1)
+                angleStep = _data.AngleSpread / (_data.ProjectilesPerBurst - 1);
+
+            halfAngleSpread = _data.AngleSpread / 2f;
             startAngle = targetAngle - halfAngleSpread;
             endAngle = targetAngle + halfAngleSpread;
             currentAngle = startAngle;
@@ -185,8 +149,8 @@ public class Spawner : MonoBehaviour
     private Vector2 GetBulletSpawnPos(float currentAngle)
     {
         // define x and y values based on sin and cos of current angle 
-        float x = transform.position.x + _radius * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
-        float y = transform.position.y + _radius * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
+        float x = transform.position.x + _data.FireRadius * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
+        float y = transform.position.y + _data.FireRadius * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
         Vector2 pos = new Vector2(x, y);
 
         return pos;
