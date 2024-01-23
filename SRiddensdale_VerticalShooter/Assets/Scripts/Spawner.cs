@@ -10,11 +10,19 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public enum SpawnCall
+    {
+        Automatic,
+        ControlledByScript,
+    }
+
     [Header("Bullet Settings")]
     [SerializeField]
     private float _bulletForce;
     [SerializeField]
     private Bullet _bulletPrefab;
+    [SerializeField, Tooltip("Determines whether the spawn is handled by this script or by another script. This allows flexibility for enemies and player")]
+    private SpawnCall _spawnCall;
 
     [Header("Fire Motion")]
     [HideIf(nameof(_aimAtTarget))]
@@ -74,6 +82,7 @@ public class Spawner : MonoBehaviour
         // updates the sin angle and spin rate of the curve
         UpdateAngularMotion();
         // fires bullets
+        if (_spawnCall == SpawnCall.ControlledByScript) return;
         Fire();
     }
 
@@ -88,7 +97,7 @@ public class Spawner : MonoBehaviour
         if (_useCurve) angleRot *= Quaternion.Euler(0, 0, (_curve.Evaluate(Time.time * _curveSpeed) * Time.deltaTime * _curveAmplitude));
     }
 
-    private void Fire()
+    public void Fire()
     {
         if (activeFireCoroutine != null) return;
 
