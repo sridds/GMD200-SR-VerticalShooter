@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Health _playerHealth;
 
+    [SerializeField]
+    private Supercharge _playerSupercharge;
+
     public Health PlayerHealth { get { return _playerHealth; } }
 
     private void Start()
@@ -29,7 +32,26 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Z)) CallFire();
+        if (Input.GetKey(KeyCode.Z) && CanFire()) CallFire();
+
+        // This is getting messy and I'm not proud of it, but hey, it works.
+        if (_playerSupercharge.IsReleasingCharge || _playerSupercharge.IsChargingUp) {
+            _playerMovement.OverrideDash = true;
+            _playerMovement.ChangePlayerSpeed(new Vector2(5, 5));
+        }
+        else {
+            _playerMovement.OverrideDash = false;
+            _playerMovement.ResetPlayerSpeed();
+        }
+    }
+
+    private bool CanFire()
+    {
+        if (_playerSupercharge.IsChargingUp) return false;
+        if (GameManager.instance.CurrentGameState == GameManager.GameState.Paused) return false;
+        if (_playerSupercharge.IsReleasingCharge) return false;
+
+        return true;
     }
 
     private void CallFire() => _playerGun.Fire();

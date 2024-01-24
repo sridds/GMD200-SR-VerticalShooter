@@ -21,11 +21,13 @@ public class PlayerMovement : MonoBehaviour
     // accessors
     public float DashTime { get { return _dashTime; } }
     public Vector2 Velocity { get { return rb.velocity; } }
+    public bool OverrideDash = false;
 
     // internal variables
     private Vector2 playerInput;
     private Rigidbody2D rb;
     private bool dashing;
+    private Vector2 speed;
 
     // events
     public delegate void DashStart();
@@ -56,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && activeDashCoroutine == null && playerInput != Vector2.zero) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && activeDashCoroutine == null && playerInput != Vector2.zero && !OverrideDash) {
             activeDashCoroutine = StartCoroutine(Dash());
         }
 
@@ -68,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // don't overwrite velocity if dashing
         if (dashing) return;
-        Vector2 wishVel = playerInput * _speed;
+        Vector2 wishVel = playerInput * speed;
 
         rb.velocity = wishVel;
     }
@@ -90,4 +92,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(_dashCooldownTime);
         activeDashCoroutine = null;
     }
+
+    public void ChangePlayerSpeed(Vector2 newSpeed) => speed = newSpeed;
+
+    public void ResetPlayerSpeed() => speed = _speed;
 }

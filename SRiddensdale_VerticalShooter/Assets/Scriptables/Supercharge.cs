@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Supercharge : MonoBehaviour
@@ -17,21 +18,27 @@ public class Supercharge : MonoBehaviour
     private float _chargeCooldown;
 
     private bool chargeReady;
-    private bool releasingCharge;
+    private bool onCooldown;
+
+    public bool IsChargingUp { get; private set; }
+    public bool IsReleasingCharge { get; private set; }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.X) && !releasingCharge) {
+        if (Input.GetKey(KeyCode.X) && !onCooldown) {
             _animator.SetBool("Charging", true);
+            IsChargingUp = true;
         }
         else {
             _animator.SetBool("Charging", false);
+            IsChargingUp = false;
         }
 
         if(Input.GetKeyUp(KeyCode.X) && chargeReady)
         {
             chargeReady = false;
-            releasingCharge = true;
+            IsReleasingCharge = true;
+            onCooldown = true;
             StartCoroutine(ReleaseSupercharge());
         }
     }
@@ -56,9 +63,11 @@ public class Supercharge : MonoBehaviour
         }
 
         _chargeAnimation.SetTrigger("CloseBeam");
+        IsReleasingCharge = false;
+
         yield return new WaitForSeconds(_chargeCooldown);
         _chargeAnimation.gameObject.SetActive(false);
 
-        releasingCharge = false;
+        onCooldown = false;
     }
 }
