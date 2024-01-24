@@ -3,10 +3,12 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
     public enum GameState
     {
-        Paused,
-        Playing
+        Playing,
+        Paused
     }
 
     // Accessors
@@ -24,10 +26,9 @@ public class GameManager : MonoBehaviour
     // fields
     private float timeScaleBeforePause;
 
-    private void Start()
-    {
-        Time.timeScale = 1;
-    }
+    private void Awake() => instance = this;
+
+    private void Start() => Time.timeScale = 1;
 
     private void Update()
     {

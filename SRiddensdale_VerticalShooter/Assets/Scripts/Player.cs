@@ -41,8 +41,13 @@ public class Player : MonoBehaviour
         {
             // damaged
             CameraShake.instance.Shake(0.6f, 0.4f);
+            GameManager.instance.SetTimeScale(0.25f, 0.25f);
+
+            Invoke(nameof(SetTimeScaleBack), 0.25f);
         }
     }
+
+    private void SetTimeScaleBack() => GameManager.instance.SetTimeScale(1f, 0.5f);
 
     private void DashIFrames() => _playerHealth.CallIFrames(15, _playerMovement.DashTime / (float)15);
 }
