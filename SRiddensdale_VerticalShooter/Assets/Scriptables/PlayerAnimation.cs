@@ -56,7 +56,7 @@ public class PlayerAnimation : MonoBehaviour
                 _thruster.sprite = _thrusterSprites[index];
                 index++;
 
-                index = index % _thrusterSprites.Length - 1;
+                index = index % (_thrusterSprites.Length);
             }
         }
         else {
