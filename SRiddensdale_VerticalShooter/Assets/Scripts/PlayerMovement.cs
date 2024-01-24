@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     // accessors
     public float DashTime { get { return _dashTime; } }
+    public Vector2 Velocity { get { return rb.velocity; } }
 
     // internal variables
     private Vector2 playerInput;
