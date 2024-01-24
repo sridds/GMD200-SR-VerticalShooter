@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int Points { get; private set; }
     public float TimePlaying { get; private set; }
     public GameState CurrentGameState { get; private set; }
+    public Player ActivePlayer { get { if (cachedPlayer == null) cachedPlayer = FindAnyObjectByType<Player>(); return cachedPlayer; } }
 
     // Delegates
     public delegate void PointUpdate(int oldPoints, int newPoints);
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     // fields
     private float timeScaleBeforePause;
+    private Player cachedPlayer;
 
     private void Awake() => instance = this;
 
