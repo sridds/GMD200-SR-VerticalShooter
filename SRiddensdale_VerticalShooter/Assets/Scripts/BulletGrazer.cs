@@ -7,12 +7,19 @@ using UnityEngine;
 /// </summary>
 public class BulletGrazer : MonoBehaviour
 {
+    [Header("Modifiers")]
     [SerializeField]
     private float _minGrazeDistance = 1.0f;
     [SerializeField]
     private float _grazeInterval = 0.25f;
     [SerializeField]
     private LayerMask _bulletGrazeLayer;
+
+    [Header("References")]
+    [SerializeField]
+    private Player _player;
+    [SerializeField]
+    private SpriteRenderer _grazeVisual;
 
     private float grazeTimer;
     public delegate void Grazed();
@@ -24,6 +31,8 @@ public class BulletGrazer : MonoBehaviour
 
         // decrement timer
         if (grazeTimer > 0) grazeTimer -= Time.deltaTime;
+
+        if(_grazeVisual.color.a > 0) _grazeVisual.color = new Color(_grazeVisual.color.r, _grazeVisual.color.g, _grazeVisual.color.b, _grazeVisual.color.a - 2 * Time.deltaTime);
     }
 
     private bool CanGraze()
@@ -31,6 +40,8 @@ public class BulletGrazer : MonoBehaviour
         // if the graze timer is still active, return false
         if (grazeTimer > 0) return false;
         if (!Physics2D.OverlapCircle(transform.position, _minGrazeDistance, _bulletGrazeLayer)) return false;
+        if (_player.PlayerHealth.IFramesActive) return false;
+
         return true;
     }
 
@@ -40,7 +51,7 @@ public class BulletGrazer : MonoBehaviour
     private void Graze()
     {
         grazeTimer = _grazeInterval;
-        Debug.Log("Graze!");
+        _grazeVisual.color = new Color(_grazeVisual.color.r, _grazeVisual.color.g, _grazeVisual.color.b, 0.6f);
 
         OnGrazed?.Invoke();
     }

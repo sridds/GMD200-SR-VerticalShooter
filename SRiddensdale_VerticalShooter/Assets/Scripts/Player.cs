@@ -13,20 +13,35 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Health _playerHealth;
 
+    public Health PlayerHealth { get { return _playerHealth; } }
+
     private void Start()
     {
         _playerMovement.OnDashStart += DashIFrames;
-    }
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Z)) {
-            CallFire();
-        }
+        _playerHealth.OnHealthUpdate += HealthUpdate;
     }
 
-    private void CallFire()
+    private void OnDisable()
     {
-        _playerGun.Fire();
+        _playerMovement.OnDashStart -= DashIFrames;
+        _playerHealth.OnHealthUpdate -= HealthUpdate;
+    }
+
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Z)) CallFire();
+    }
+
+    private void CallFire() => _playerGun.Fire();
+
+
+    private void HealthUpdate(int oldHealth, int newHealth)
+    {
+        if (oldHealth > newHealth)
+        {
+            // damaged
+            CameraShake.instance.Shake(0.6f, 0.4f);
+        }
     }
 
     private void DashIFrames() => _playerHealth.CallIFrames(15, _playerMovement.DashTime / (float)15);

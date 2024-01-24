@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
-using static ScriptableSpawner;
+using UnityEngine.Events;
 
 /// <summary>
 /// Thanks to this video for helping out with the cone of influence

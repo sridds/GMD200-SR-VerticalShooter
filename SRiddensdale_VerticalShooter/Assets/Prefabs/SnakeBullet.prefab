@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeTime: 4
-  _damageAmt: 0
+  _damageAmt: 15
   _useMovementCurve: 1
   _movementCurve:
     serializedVersion: 2

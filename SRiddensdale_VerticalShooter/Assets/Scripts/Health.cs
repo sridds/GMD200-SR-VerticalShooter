@@ -23,6 +23,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     private SpriteRenderer _blinker;
 
     public int CurrentHealth { get; private set; }
+    public bool IFramesActive { get; private set; }
 
     private bool canDamage = true;
 
@@ -43,17 +44,13 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     {
         if (!canDamage) return;
 
-        // get the old and new health
-        int oldHealth = CurrentHealth;
-
         CurrentHealth -= damageAmount;
-        int newHealth = CurrentHealth;
 
         // call the iframes coroutine
         if (_doIFrames) StartCoroutine(HandleIFrames(_maxIFrames, _IFrameInterval));
 
         // call events
-        OnHealthUpdate?.Invoke(oldHealth, newHealth);
+        OnHealthUpdate?.Invoke(CurrentHealth + damageAmount, CurrentHealth);
     }
 
     /// <summary>
@@ -89,6 +86,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     /// <returns></returns>
     private IEnumerator HandleIFrames(int iframes, float interval)
     {
+        IFramesActive = true;
         canDamage = false;
         // blink the sprite renderer for the set number of iframes
         for (int i = 0; i < iframes; i++)
@@ -101,6 +99,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
         // just in case its still disabled
         _blinker.enabled = true;
 
+        IFramesActive = false;
         canDamage = true;
     }
 }
