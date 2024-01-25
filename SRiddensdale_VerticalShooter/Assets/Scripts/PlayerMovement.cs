@@ -21,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
     // accessors
     public float DashTime { get { return _dashTime; } }
     public Vector2 Velocity { get { return rb.velocity; } }
-    public bool OverrideDash = false;
+    public bool IsDashing { get { return dashing; } }
+
+    [HideInInspector]
+    public bool OverrideDash = true;
 
     // internal variables
     private Vector2 playerInput;
@@ -32,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     // events
     public delegate void DashStart();
     public DashStart OnDashStart;
+
+    public delegate void DashEnd();
+    public DashEnd OnDashEnd;
 
     // corotuines
     private Coroutine activeDashCoroutine = null;
@@ -88,8 +94,10 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = playerInput * _dashSpeed;
         yield return new WaitForSeconds(_dashTime);
         dashing = false;
+        OnDashEnd?.Invoke();
 
         yield return new WaitForSeconds(_dashCooldownTime);
+        
         activeDashCoroutine = null;
     }
 

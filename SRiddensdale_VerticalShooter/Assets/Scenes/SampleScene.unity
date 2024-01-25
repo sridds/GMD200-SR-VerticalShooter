@@ -425,52 +425,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 519420031}
---- !u!1 &524516302
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 524516304}
-  - component: {fileID: 524516303}
-  m_Layer: 0
-  m_Name: EnemySpawnerTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &524516303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524516302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 429511bebe9644546a9d2b04c41bd069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: {x: 25, y: 25}
-  testSprite: {fileID: -792410299, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
---- !u!4 &524516304
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524516302}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &534290042
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: {x: 10, y: 10}
   _allowDash: 1
-  _dashSpeed: 25
+  _dashSpeed: 35
   _dashTime: 0.25
   _dashCooldownTime: 1.5
   OverrideDash: 0
@@ -1046,6 +1000,8 @@ MonoBehaviour:
   _grazeForward: {fileID: -1773312371, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
   _grazeTiltLeft: {fileID: -809260812, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
   _grazeTiltRight: {fileID: 699664405, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
+  _trailPrefab: {fileID: 8506072799500731173, guid: f604d231433db4f8bb7b78c4b385fbb6, type: 3}
+  _trailInterval: 0.08
   _thrusterSprites:
   - {fileID: -1854556253, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
   - {fileID: -1986820774, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
@@ -2043,4 +1999,3 @@ SceneRoots:
   - {fileID: 1267588850}
   - {fileID: 1781605330}
   - {fileID: 266327981}
-  - {fileID: 524516304}
