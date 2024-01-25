@@ -10,6 +10,8 @@ public class Supercharge : MonoBehaviour
     private Animator _animator;
     [SerializeField]
     private Animator _chargeAnimation;
+    [SerializeField]
+    private Beam _beam;
 
     [Header("Properties")]
     [SerializeField]
@@ -51,7 +53,8 @@ public class Supercharge : MonoBehaviour
     private IEnumerator ReleaseSupercharge()
     {
         CameraShake.instance.Shake(0.8f, 0.35f);
-        _chargeAnimation.gameObject.SetActive(true);
+        _beam.EnableBeam();
+        _chargeAnimation.SetTrigger("OpenBeam");
 
         float elapsedTime = 0.0f;
         while(elapsedTime < _chargeDuration)
@@ -63,10 +66,10 @@ public class Supercharge : MonoBehaviour
         }
 
         _chargeAnimation.SetTrigger("CloseBeam");
+        _beam.DisableBeam();
         IsReleasingCharge = false;
 
         yield return new WaitForSeconds(_chargeCooldown);
-        _chargeAnimation.gameObject.SetActive(false);
 
         onCooldown = false;
     }
