@@ -1043,6 +1043,9 @@ MonoBehaviour:
   _shipForward: {fileID: -94918262, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
   _shipTiltLeft: {fileID: 1768623364, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
   _shipTiltRight: {fileID: 1752728184, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
+  _grazeForward: {fileID: -1773312371, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
+  _grazeTiltLeft: {fileID: -809260812, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
+  _grazeTiltRight: {fileID: 699664405, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
   _thrusterSprites:
   - {fileID: -1854556253, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
   - {fileID: -1986820774, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
@@ -1433,7 +1436,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5710852, y: 1.5710852, z: 1.5710852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 960757428}
@@ -1479,8 +1482,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -94918262, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
-  m_Color: {r: 0.6179246, g: 0.6579324, b: 1, a: 0}
+  m_Sprite: {fileID: -1773312371, guid: 21768e7dc3fae4b0eb683860ec658876, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

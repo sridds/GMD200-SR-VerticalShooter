@@ -27,6 +27,17 @@ public class PlayerAnimation : MonoBehaviour
     [SerializeField]
     private Sprite _shipTiltRight;
 
+    [Header("Graze Sprites")]
+    [SerializeField]
+    private Sprite _grazeForward;
+
+    [SerializeField]
+    private Sprite _grazeTiltLeft;
+
+    [SerializeField]
+    private Sprite _grazeTiltRight;
+
+    [Header("Misc Sprites")]
     [SerializeField]
     private Sprite[] _thrusterSprites;
 
@@ -40,11 +51,14 @@ public class PlayerAnimation : MonoBehaviour
     {
         if(_movement.Velocity.x > 0.2f) {
             _renderer.sprite = _shipTiltRight;
+            _graze.sprite = _grazeTiltRight;
         } else if(_movement.Velocity.x < -0.2f) {
             _renderer.sprite = _shipTiltLeft;
+            _graze.sprite = _grazeTiltLeft;
         }
         else {
             _renderer.sprite = _shipForward;
+            _graze.sprite = _grazeForward;
         }
 
         if(_movement.Velocity.y > 0.2f) {
@@ -62,8 +76,6 @@ public class PlayerAnimation : MonoBehaviour
         else {
             _thruster.enabled = false;
         }
-
-        _graze.sprite = _renderer.sprite;
 
         if (thrusterAnimationTimer > 0) thrusterAnimationTimer -= Time.deltaTime;
     }
