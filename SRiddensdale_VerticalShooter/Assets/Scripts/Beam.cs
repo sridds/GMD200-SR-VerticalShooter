@@ -12,7 +12,7 @@ public class Beam : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("fuee");
+        // Call the damagable to take damage while it remains in the trigger
         if(collision.TryGetComponent<IDamagable>(out IDamagable damagable))
         {
             damagable.TakeDamage(_damage);

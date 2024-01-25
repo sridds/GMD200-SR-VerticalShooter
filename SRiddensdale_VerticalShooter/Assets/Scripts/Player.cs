@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private Supercharge _playerSupercharge;
 
     public Health PlayerHealth { get { return _playerHealth; } }
+    public Powerup _activePowerup { get; private set; }
 
     private void Start()
     {
@@ -43,6 +44,9 @@ public class Player : MonoBehaviour
             _playerMovement.OverrideDash = false;
             _playerMovement.ResetPlayerSpeed();
         }
+
+        // tick the active powerup
+        if (_activePowerup != null) _activePowerup.Tick();
     }
 
     private bool CanFire()
@@ -67,6 +71,27 @@ public class Player : MonoBehaviour
 
             Invoke(nameof(SetTimeScaleBack), 0.25f);
         }
+    }
+
+    /// <summary>
+    /// Sets the current active powerup of the player
+    /// </summary>
+    /// <param name="powerup"></param>
+    public void SetPowerup(Powerup powerup)
+    {
+        _activePowerup = powerup;
+
+        // subscribe to powerup events
+        powerup.OnPowerupExpire += PowerupExpire;
+    }
+
+    /// <summary>
+    /// This is called when the current active powerup expires
+    /// </summary>
+    private void PowerupExpire()
+    {
+        _activePowerup.OnPowerupExpire -= PowerupExpire;
+        _activePowerup = null;
     }
 
     private void SetTimeScaleBack() => GameManager.instance.SetTimeScale(1f, 0.5f);

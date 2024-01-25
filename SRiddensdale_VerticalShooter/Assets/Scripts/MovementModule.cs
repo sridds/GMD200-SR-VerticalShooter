@@ -5,11 +5,15 @@ using UnityEngine;
 public class MovementModule : MonoBehaviour
 {
     // different movement types - node based
+    private Rigidbody2D rb;
 
-
-    public class MovementNode
+    private void Start()
     {
-        public bool RandomInsideSquare;
-        public Vector2 Position;
+        rb.GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        
     }
 }
