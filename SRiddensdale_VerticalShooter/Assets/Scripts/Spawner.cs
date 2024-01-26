@@ -24,13 +24,49 @@ public class Spawner : MonoBehaviour
 
     // private fields
     Quaternion angleRot = Quaternion.identity;
-
     private Coroutine activeFireCoroutine;
     private Transform target;
     private bool firing;
 
+    public float timeBetweenBursts { get; private set; }
+    public int burstCount { get; private set; }
+    public int projectilesPerBurst { get; private set; }
+
+    #region Powerups
+    /// <summary>
+    /// I apologize, I couldn't think of a better way of doing this...
+    /// </summary>
+    /// <param name="fireRate"></param>
+    public void SetRatePowerup(float timeBetweenBursts)
+    {
+        this.timeBetweenBursts = timeBetweenBursts;
+    }
+
+    public void SetBurstPowerup(int burstCount, int projectilesPerBurst)
+    {
+        this.burstCount = burstCount;
+        this.projectilesPerBurst = projectilesPerBurst;
+    }
+
+    public void ResetRatePowerup() => timeBetweenBursts = _data.TimeBetweenBursts;
+
+    public void ResetBurstPowerup()
+    {
+        burstCount = _data.BurstCount;
+        projectilesPerBurst = _data.ProjectilesPerBurst;
+    }
+
+    public void ResetPowerups()
+    {
+        timeBetweenBursts = _data.TimeBetweenBursts;
+        burstCount = _data.BurstCount;
+        projectilesPerBurst = _data.ProjectilesPerBurst;
+    }
+    #endregion
+
     private void Start()
     {
+        ResetPowerups();
         // ensure curve is pingpong
         _data.Curve.postWrapMode = WrapMode.PingPong;
         target = FindObjectOfType<PlayerMovement>().transform;
@@ -72,11 +108,11 @@ public class Spawner : MonoBehaviour
         // an initial update of the fire cone to get the direction of each bullet
         UpdateCone(out startAngle, out currentAngle, out angleStep);
 
-        for (int i = 0; i < _data.BurstCount; i++)
+        for (int i = 0; i < burstCount; i++)
         {
-            for(int j = 0; j < _data.ProjectilesPerBurst; j++)
+            for(int j = 0; j < projectilesPerBurst; j++)
             {
-                if(_data.ProjectilesPerBurst == 1) {
+                if(projectilesPerBurst == 1) {
                     currentAngle = 90;
                 }
                 Vector2 pos = GetBulletSpawnPos(currentAngle);
@@ -97,7 +133,7 @@ public class Spawner : MonoBehaviour
 
             currentAngle = startAngle;
 
-            yield return new WaitForSeconds(_data.TimeBetweenBursts);
+            yield return new WaitForSeconds(timeBetweenBursts);
 
             // continue updating the cone aim as shots fire
             if (_data.SpinDuringFire) UpdateCone(out startAngle, out currentAngle, out angleStep);
@@ -131,8 +167,8 @@ public class Spawner : MonoBehaviour
 
         if (_data.AngleSpread != 0)
         {
-            if (_data.ProjectilesPerBurst != 1)
-                angleStep = _data.AngleSpread / (_data.ProjectilesPerBurst - 1);
+            if (projectilesPerBurst != 1)
+                angleStep = _data.AngleSpread / (projectilesPerBurst - 1);
 
             halfAngleSpread = _data.AngleSpread / 2f;
             startAngle = targetAngle - halfAngleSpread;

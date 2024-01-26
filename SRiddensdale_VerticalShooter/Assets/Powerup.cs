@@ -3,10 +3,10 @@ using UnityEngine;
 public abstract class Powerup : ScriptableObject
 {
     [SerializeField]
-    internal float _powerupDuration = 10.0f;
+    protected float _powerupDuration = 10.0f;
 
-    internal bool powerupActive;
-    internal float lifetime;
+    protected bool powerupActive;
+    protected float lifetime = 0.0f;
 
     public delegate void PowerupExpire();
     public PowerupExpire OnPowerupExpire;
@@ -14,9 +14,10 @@ public abstract class Powerup : ScriptableObject
     /// <summary>
     /// Abstract for other powerups to override it
     /// </summary>
-    internal virtual void Collect()
+    public virtual void Collect()
     {
         powerupActive = true;
+        lifetime = 0.0f;
 
         // set powerup of player
         FindObjectOfType<Player>().SetPowerup(this);
@@ -29,11 +30,13 @@ public abstract class Powerup : ScriptableObject
         if (!powerupActive) return;
 
         lifetime += Time.deltaTime;
+
+        // expire
         if (lifetime > _powerupDuration) Expire();
     }
 
     /// <summary>
     /// Other classes that inherit must fill out this class
     /// </summary>
-    internal virtual void Expire() => OnPowerupExpire?.Invoke();
+    protected virtual void Expire() => OnPowerupExpire?.Invoke();
 }

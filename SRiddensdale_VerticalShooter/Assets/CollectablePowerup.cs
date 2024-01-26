@@ -12,6 +12,8 @@ public class CollectablePowerup : MonoBehaviour
         // call collect if player triggered the object
         if (collision.TryGetComponent<Player>(out Player player)) {
             _powerup.Collect();
+
+            Destroy(gameObject);
         }
     }
 }

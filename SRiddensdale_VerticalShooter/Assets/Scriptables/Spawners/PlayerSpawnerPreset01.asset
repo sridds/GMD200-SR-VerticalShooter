@@ -46,7 +46,7 @@ MonoBehaviour:
   AimAtTarget: 0
   FireRadius: 0.15
   BurstCount: 1
-  ProjectilesPerBurst: 3
+  ProjectilesPerBurst: 1
   AngleSpread: 30
   TimeBetweenBursts: 0.3
   RestTime: 0

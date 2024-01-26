@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ffd9af3579ac4f4dae13588be19226e, type: 3}
-  m_Name: FireRatePowerup
+  m_Name: BulletIncreasePowerup
   m_EditorClassIdentifier: 
   _powerupDuration: 10
-  _modifier: 0
-  _timeBetweenBursts: 0.4
+  _modifier: 1
+  _fireRate: 2
   _multiply: 1
-  _burstCount: 0
-  _projectilesPerBurst: 0
+  _burstCount: 1
+  _projectilesPerBurst: 3

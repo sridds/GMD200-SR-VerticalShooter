@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
     private Supercharge _playerSupercharge;
 
     public Health PlayerHealth { get { return _playerHealth; } }
-    public Powerup _activePowerup { get; private set; }
+    public Powerup ActivePowerup { get; private set; }
+    public Spawner PlayerGun { get { return _playerGun; } }
 
     private void Start()
     {
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
         }
 
         // tick the active powerup
-        if (_activePowerup != null) _activePowerup.Tick();
+        if (ActivePowerup != null) ActivePowerup.Tick();
     }
 
     private bool CanFire()
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
     /// <param name="powerup"></param>
     public void SetPowerup(Powerup powerup)
     {
-        _activePowerup = powerup;
+        ActivePowerup = powerup;
 
         // subscribe to powerup events
         powerup.OnPowerupExpire += PowerupExpire;
@@ -90,8 +91,9 @@ public class Player : MonoBehaviour
     /// </summary>
     private void PowerupExpire()
     {
-        _activePowerup.OnPowerupExpire -= PowerupExpire;
-        _activePowerup = null;
+        ActivePowerup.OnPowerupExpire -= PowerupExpire;
+
+        ActivePowerup = null;
     }
 
     private void SetTimeScaleBack() => GameManager.instance.SetTimeScale(1f, 0.5f);
