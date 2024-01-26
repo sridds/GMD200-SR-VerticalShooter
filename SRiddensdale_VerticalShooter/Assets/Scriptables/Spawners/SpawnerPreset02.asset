@@ -44,9 +44,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   OnlyApplyCurveWhileFiring: 0
   AimAtTarget: 0
-  FireRadius: 1
+  FireRadius: 0.5
   BurstCount: 3
-  ProjectilesPerBurst: 7
+  ProjectilesPerBurst: 6
   AngleSpread: 360
   TimeBetweenBursts: 0.1
   RestTime: 1

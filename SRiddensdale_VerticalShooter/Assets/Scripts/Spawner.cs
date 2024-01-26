@@ -22,6 +22,10 @@ public class Spawner : MonoBehaviour
     [SerializeField, Tooltip("Determines whether the spawn is handled by this script or by another script. This allows flexibility for enemies and player")]
     private SpawnCall _spawnCall;
 
+    [ShowIf(nameof(_spawnCall), SpawnCall.ControlledByScript)]
+    [SerializeField]
+    private bool _ignoreRestTime;
+
     // private fields
     Quaternion angleRot = Quaternion.identity;
     private Coroutine activeFireCoroutine;
@@ -76,20 +80,29 @@ public class Spawner : MonoBehaviour
         firing = true;
         float startAngle, currentAngle, angleStep;
 
+        int burstCount = activeData.ProjectilesPerBurst;
+        if (activeData.ProjectilesPerBurst != 1)
+        {
+            burstCount = activeData.ProjectilesPerBurst - 1;
+        }
+
         // an initial update of the fire cone to get the direction of each bullet
         UpdateCone(out startAngle, out currentAngle, out angleStep);
 
         for (int i = 0; i < activeData.BurstCount; i++)
         {
-            for(int j = 0; j < activeData.ProjectilesPerBurst; j++)
+            yield return null;
+
+            for (int j = 0; j < burstCount; j++)
             {
+                yield return null;
+
                 if(activeData.ProjectilesPerBurst == 1) {
                     currentAngle = 90;
                 }
-                Vector2 pos = GetBulletSpawnPos(currentAngle);
 
                 // fire a new bullet
-                GameObject newBullet = Instantiate(activeData.BulletPrefab, pos, Quaternion.identity).gameObject;
+                GameObject newBullet = Instantiate(activeData.BulletPrefab, GetBulletSpawnPos(currentAngle), Quaternion.identity).gameObject;
                 newBullet.transform.right = newBullet.transform.position - transform.position;
 
                 // update velocity of bullets
@@ -117,7 +130,9 @@ public class Spawner : MonoBehaviour
 
         // play fire sound
         if (activeData.PlayFireAfterBurst) AudioHandler.instance.ProcessAudioData(activeData.FireSound);
-        yield return new WaitForSeconds(activeData.RestTime);
+
+        if(_ignoreRestTime)
+            yield return new WaitForSeconds(activeData.RestTime);
 
         activeFireCoroutine = null;
     }
@@ -165,6 +180,8 @@ public class Spawner : MonoBehaviour
         float x = transform.position.x + activeData.FireRadius * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
         float y = transform.position.y + activeData.FireRadius * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
         Vector2 pos = new Vector2(x, y);
+
+        Debug.Log(pos);
 
         return pos;
     }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MovementModule : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MovementModule : MonoBehaviour
             ToPoint
         }
 
+        public float Delay;
         public MoveMode Mode;
 
         [AllowNesting]
@@ -24,7 +26,7 @@ public class MovementModule : MonoBehaviour
         public Vector2 Point;
 
         public float MoveTime;
-        public float Delay;
+        public UnityEvent OnReachNode;
     }
 
     [SerializeField]
@@ -49,7 +51,11 @@ public class MovementModule : MonoBehaviour
     /// </summary>
     private void FillQueue()
     {
-        Debug.Log("filling");
+        if(_moveNodes.Length == 0) {
+            Debug.LogWarning("Could not execute move nodes. No movement nodes added");
+            return;
+        }
+
         // fill queue randomly
         if (_chooseRandomNodes) {
             MoveNode[] moveNodes = _moveNodes;
@@ -88,7 +94,7 @@ public class MovementModule : MonoBehaviour
 
             float elapsed = 0.0f;
             Vector2 initial = transform.position;
-            Vector2 target = node.Mode == MoveNode.MoveMode.Steps ? initial + node.MoveSteps : node.Point;
+            Vector2 target = GetTarget(node);
 
             while (elapsed < node.MoveTime)
             {
@@ -98,6 +104,17 @@ public class MovementModule : MonoBehaviour
                 elapsed += Time.deltaTime;
                 yield return null;
             }
+
+            // set to target position
+            transform.position = target;
+            node.OnReachNode?.Invoke();
         }
+    }
+
+    private Vector2 GetTarget(MoveNode node)
+    {
+        Vector2 target = target = node.Mode == MoveNode.MoveMode.Steps ? new Vector2(transform.position.x, transform.position.y) + node.MoveSteps : node.Point;
+
+        return target;
     }
 }

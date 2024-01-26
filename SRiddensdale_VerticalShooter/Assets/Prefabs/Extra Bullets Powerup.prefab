@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8916628168874749678}
   - component: {fileID: 2529202751755584628}
   - component: {fileID: 1563271544713557353}
+  - component: {fileID: 1601826328451000005}
   m_Layer: 0
   m_Name: Extra Bullets Powerup
   m_TagString: Untagged
@@ -144,3 +145,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _powerup: {fileID: 11400000, guid: a1f64a3479d664386a48c24d44fa7137, type: 2}
+--- !u!114 &1601826328451000005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732983001847077849}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a788fd5081ad24619845ae0b72aee697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveNodes:
+  - Delay: 0
+    Mode: 0
+    MoveSteps: {x: 0, y: -25}
+    Point: {x: 0, y: 0}
+    MoveTime: 4
+    OnReachNode:
+      m_PersistentCalls:
+        m_Calls: []
+  _chooseRandomNodes: 0

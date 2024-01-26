@@ -2,7 +2,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Collections;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IDamagable
 {
     private Rigidbody2D rb;
 
@@ -53,6 +53,12 @@ public class Bullet : MonoBehaviour
     [ShowIf(nameof(_homingEnabled))]
     [SerializeField]
     private float _homingStrength;
+
+    [Header("Damage Settings")]
+    [SerializeField]
+    private bool _allowDamage;
+    [SerializeField]
+    private AudioData _bulletDestroySound;
 
     private float aliveTime;
     private float speedFactor;
@@ -163,5 +169,13 @@ public class Bullet : MonoBehaviour
             damagable.TakeDamage(_damageAmt);
             Destroy(gameObject);
         }
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        if (!_allowDamage) return;
+
+        Destroy(gameObject);
+        AudioHandler.instance.ProcessAudioData(_bulletDestroySound);
     }
 }

@@ -160,6 +160,7 @@ MonoBehaviour:
   _homingEnabled: 1
   _homingTime: 2
   _homingStrength: 200
+  _allowDamage: 1
 --- !u!50 &-5779153164487161611
 Rigidbody2D:
   serializedVersion: 4

@@ -58,3 +58,4 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1.05
     spawnPosition: {x: 0, y: 0, z: 0}
+  PlayFireAfterBurst: 0

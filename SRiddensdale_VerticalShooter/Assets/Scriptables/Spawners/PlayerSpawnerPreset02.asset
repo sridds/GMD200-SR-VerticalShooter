@@ -46,7 +46,7 @@ MonoBehaviour:
   AimAtTarget: 0
   FireRadius: 0.15
   BurstCount: 1
-  ProjectilesPerBurst: 3
+  ProjectilesPerBurst: 4
   AngleSpread: 30
   TimeBetweenBursts: 0.3
   RestTime: 0
@@ -58,3 +58,4 @@ MonoBehaviour:
     minPitch: 1
     maxPitch: 1.05
     spawnPosition: {x: 0, y: 0, z: 0}
+  PlayFireAfterBurst: 0
