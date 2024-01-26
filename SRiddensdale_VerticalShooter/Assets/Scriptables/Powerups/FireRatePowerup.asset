@@ -13,8 +13,4 @@ MonoBehaviour:
   m_Name: FireRatePowerup
   m_EditorClassIdentifier: 
   _powerupDuration: 10
-  _modifier: 0
-  _timeBetweenBursts: 0.4
-  _multiply: 1
-  _burstCount: 0
-  _projectilesPerBurst: 0
+  _swapSpawner: {fileID: 11400000, guid: 1d3755a44e6304e9daf379f79963fdd2, type: 2}

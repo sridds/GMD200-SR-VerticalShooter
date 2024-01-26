@@ -13,8 +13,4 @@ MonoBehaviour:
   m_Name: BulletIncreasePowerup
   m_EditorClassIdentifier: 
   _powerupDuration: 10
-  _modifier: 1
-  _fireRate: 2
-  _multiply: 1
-  _burstCount: 1
-  _projectilesPerBurst: 3
+  _swapSpawner: {fileID: 11400000, guid: 37132df647e4840e79db8a43fe6d1299, type: 2}
