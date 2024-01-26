@@ -8,6 +8,15 @@ public class Beam : MonoBehaviour
     private int _damage;
 
     [SerializeField]
+    private AudioData _beamReleaseSound;
+
+    [SerializeField]
+    private AudioData _beamCloseSound;
+
+    [SerializeField]
+    private AudioSource _beamActiveSource;
+
+    [SerializeField]
     private BoxCollider2D _collider;
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -19,7 +28,21 @@ public class Beam : MonoBehaviour
         }
     }
 
-    public void EnableBeam() => _collider.enabled = true;
+    public void EnableBeam()
+    {
+        _collider.enabled = true;
+        _beamActiveSource.Play();
 
-    public void DisableBeam() => _collider.enabled = false;
+        AudioHandler.instance.ProcessAudioData(_beamReleaseSound);
+    }
+
+
+    public void DisableBeam()
+    {
+        _collider.enabled = false;
+        _beamActiveSource.Stop();
+
+        AudioHandler.instance.ProcessAudioData(_beamCloseSound);
+    }
+    
 }

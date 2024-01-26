@@ -12,6 +12,8 @@ public class Supercharge : MonoBehaviour
     private Animator _chargeAnimation;
     [SerializeField]
     private Beam _beam;
+    [SerializeField]
+    private AudioSource _chargeUpSource;
 
     [Header("Properties")]
     [SerializeField]
@@ -30,10 +32,14 @@ public class Supercharge : MonoBehaviour
         if (Input.GetKey(KeyCode.X) && !onCooldown) {
             _animator.SetBool("Charging", true);
             IsChargingUp = true;
+
+            if (!_chargeUpSource.isPlaying) _chargeUpSource.Play();
         }
         else {
             _animator.SetBool("Charging", false);
             IsChargingUp = false;
+
+            _chargeUpSource.Stop();
         }
 
         if(Input.GetKeyUp(KeyCode.X) && chargeReady)

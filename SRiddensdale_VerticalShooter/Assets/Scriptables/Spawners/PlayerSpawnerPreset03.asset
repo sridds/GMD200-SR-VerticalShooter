@@ -51,3 +51,10 @@ MonoBehaviour:
   TimeBetweenBursts: 0.15
   RestTime: 0
   SpinDuringFire: 0
+  FireSound:
+    clip: {fileID: 8300000, guid: e0e5c244b9bc44cdd87ea57d9a6acbf1, type: 3}
+    volume: 0.427
+    randomizePitch: 1
+    minPitch: 1
+    maxPitch: 1.05
+    spawnPosition: {x: 0, y: 0, z: 0}

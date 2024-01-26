@@ -104,6 +104,9 @@ public class Spawner : MonoBehaviour
 
             currentAngle = startAngle;
 
+            // play fire sound
+            if(!activeData.PlayFireAfterBurst) AudioHandler.instance.ProcessAudioData(activeData.FireSound);
+
             yield return new WaitForSeconds(activeData.TimeBetweenBursts);
 
             // continue updating the cone aim as shots fire
@@ -111,6 +114,9 @@ public class Spawner : MonoBehaviour
         }
 
         firing = false;
+
+        // play fire sound
+        if (activeData.PlayFireAfterBurst) AudioHandler.instance.ProcessAudioData(activeData.FireSound);
         yield return new WaitForSeconds(activeData.RestTime);
 
         activeFireCoroutine = null;

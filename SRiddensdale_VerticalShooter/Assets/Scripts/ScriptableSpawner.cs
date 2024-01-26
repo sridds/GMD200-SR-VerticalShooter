@@ -40,4 +40,8 @@ public class ScriptableSpawner : ScriptableObject
     public float RestTime;
     [Tooltip("Determines whether the cone of fire will spin / aim while firing shotsw ")]
     public bool SpinDuringFire;
+
+    [Header("Audio")]
+    public AudioData FireSound;
+    public bool PlayFireAfterBurst;
 }

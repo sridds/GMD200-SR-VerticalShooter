@@ -4,8 +4,6 @@ public abstract class Powerup : ScriptableObject
 {
     [SerializeField]
     protected float _powerupDuration = 10.0f;
-
-    protected bool powerupActive;
     protected float lifetime = 0.0f;
 
     public delegate void PowerupExpire();
@@ -16,7 +14,6 @@ public abstract class Powerup : ScriptableObject
     /// </summary>
     public virtual void Collect()
     {
-        powerupActive = true;
         lifetime = 0.0f;
 
         // set powerup of player
@@ -27,8 +24,6 @@ public abstract class Powerup : ScriptableObject
     /// </summary>
     public virtual void Tick()
     {
-        if (!powerupActive) return;
-
         lifetime += Time.deltaTime;
 
         // expire

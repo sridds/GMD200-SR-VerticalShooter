@@ -22,6 +22,12 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     [SerializeField]
     private SpriteRenderer _blinker;
 
+    [Header("Sound")]
+    [SerializeField]
+    private AudioData _damageSound;
+    [SerializeField]
+    private AudioData _healSound;
+
     public int CurrentHealth { get; private set; }
     public bool IFramesActive { get; private set; }
 
@@ -45,6 +51,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
         if (!canDamage) return;
 
         CurrentHealth -= damageAmount;
+        AudioHandler.instance.ProcessAudioData(_damageSound);
 
         // call the iframes coroutine
         if (_doIFrames) StartCoroutine(HandleIFrames(_maxIFrames, _IFrameInterval));
@@ -61,6 +68,8 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     {
         // get the old and new health
         int oldHealth = CurrentHealth;
+
+        AudioHandler.instance.ProcessAudioData(_healSound);
 
         CurrentHealth += CurrentHealth;
         int newHealth = CurrentHealth;

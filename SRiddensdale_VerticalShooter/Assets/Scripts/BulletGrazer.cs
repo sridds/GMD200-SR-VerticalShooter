@@ -21,6 +21,10 @@ public class BulletGrazer : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _grazeVisual;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioData _grazeSound;
+
     private float grazeTimer;
     public delegate void Grazed();
     public Grazed OnGrazed;
@@ -52,6 +56,7 @@ public class BulletGrazer : MonoBehaviour
     {
         grazeTimer = _grazeInterval;
         _grazeVisual.color = new Color(_grazeVisual.color.r, _grazeVisual.color.g, _grazeVisual.color.b, 0.6f);
+        AudioHandler.instance.ProcessAudioData(_grazeSound);
 
         OnGrazed?.Invoke();
     }
