@@ -2224,7 +2224,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781605325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8266847ed5d694e89b474b2ccbba8f78, type: 3}
   m_Name: 
@@ -2323,23 +2323,23 @@ MonoBehaviour:
   - Mode: 0
     MoveSteps: {x: 0, y: 5}
     Point: {x: 0, y: 0}
-    Speed: 1
+    MoveTime: 0.3
     Delay: 0
   - Mode: 1
     MoveSteps: {x: 0, y: 0}
     Point: {x: 1, y: 2}
-    Speed: 25
-    Delay: 0
+    MoveTime: 0.3
+    Delay: 2
   - Mode: 0
     MoveSteps: {x: 0, y: 0}
     Point: {x: 0, y: 0}
-    Speed: 15
+    MoveTime: 0.3
     Delay: 0
   - Mode: 1
     MoveSteps: {x: 0, y: 0}
     Point: {x: 1, y: 1}
-    Speed: 0
-    Delay: 55
+    MoveTime: 0.3
+    Delay: 0.5
   _chooseRandomNodes: 0
 --- !u!1 &1879539166
 GameObject:

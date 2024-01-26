@@ -23,7 +23,7 @@ public class MovementModule : MonoBehaviour
         [ShowIf(nameof(Mode), MoveMode.ToPoint)]
         public Vector2 Point;
 
-        public float Speed;
+        public float MoveTime;
         public float Delay;
     }
 
@@ -49,6 +49,7 @@ public class MovementModule : MonoBehaviour
     /// </summary>
     private void FillQueue()
     {
+        Debug.Log("filling");
         // fill queue randomly
         if (_chooseRandomNodes) {
             MoveNode[] moveNodes = _moveNodes;
@@ -68,6 +69,35 @@ public class MovementModule : MonoBehaviour
         // fill queue
         foreach (MoveNode node in _moveNodes) {
             moveQueue.Enqueue(node);
+        }
+
+        StartCoroutine(HandleQueue());
+    }
+
+    private System.Collections.IEnumerator HandleQueue()
+    {
+        // loop through each node
+        int count = moveQueue.Count;
+        for(int i = 0; i < count; i++)
+        {
+            // dequeue the node
+            MoveNode node = moveQueue.Dequeue();
+
+            // wait for delay (if there is delay)
+            yield return new WaitForSeconds(node.Delay);
+
+            float elapsed = 0.0f;
+            Vector2 initial = transform.position;
+            Vector2 target = node.Mode == MoveNode.MoveMode.Steps ? initial + node.MoveSteps : node.Point;
+
+            while (elapsed < node.MoveTime)
+            {
+                // lerp position over time
+                transform.position = Vector2.Lerp(initial, target, elapsed / node.MoveTime);
+
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }
