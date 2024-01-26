@@ -895,6 +895,13 @@ MonoBehaviour:
   _dashSpeed: 35
   _dashTime: 0.25
   _dashCooldownTime: 1.5
+  _dashSound:
+    clip: {fileID: 8300000, guid: 46b59346c42b04eacad45a7443e49f92, type: 3}
+    volume: 0.407
+    randomizePitch: 1
+    minPitch: 1
+    maxPitch: 1.05
+    spawnPosition: {x: 0, y: 0, z: 0}
   OverrideDash: 0
 --- !u!50 &960757426
 Rigidbody2D:

@@ -59,6 +59,8 @@ public class Bullet : MonoBehaviour, IDamagable
     private bool _allowDamage;
     [SerializeField]
     private AudioData _bulletDestroySound;
+    [SerializeField]
+    private ParticleSystem _bulletBreakParticle;
 
     private float aliveTime;
     private float speedFactor;
@@ -177,5 +179,7 @@ public class Bullet : MonoBehaviour, IDamagable
 
         Destroy(gameObject);
         AudioHandler.instance.ProcessAudioData(_bulletDestroySound);
+
+        if (_bulletBreakParticle != null) Instantiate(_bulletBreakParticle, transform.position, Quaternion.identity);
     }
 }

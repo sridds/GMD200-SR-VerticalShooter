@@ -18,6 +18,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float _dashCooldownTime = 1.5f;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioData _dashSound;
+
     // accessors
     public float DashTime { get { return _dashTime; } }
     public Vector2 Velocity { get { return rb.velocity; } }
@@ -89,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // call dash event
         OnDashStart?.Invoke();
+        AudioHandler.instance.ProcessAudioData(_dashSound);
 
         dashing = true;
         rb.velocity = playerInput * _dashSpeed;

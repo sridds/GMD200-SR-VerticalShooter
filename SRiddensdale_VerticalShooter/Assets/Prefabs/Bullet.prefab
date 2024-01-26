@@ -161,6 +161,14 @@ MonoBehaviour:
   _homingTime: 2
   _homingStrength: 200
   _allowDamage: 1
+  _bulletDestroySound:
+    clip: {fileID: 0}
+    volume: 0
+    randomizePitch: 0
+    minPitch: 0
+    maxPitch: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+  _bulletBreakParticle: {fileID: 5274086535772667980, guid: 633c3697855e74676a2b178bef696956, type: 3}
 --- !u!50 &-5779153164487161611
 Rigidbody2D:
   serializedVersion: 4
