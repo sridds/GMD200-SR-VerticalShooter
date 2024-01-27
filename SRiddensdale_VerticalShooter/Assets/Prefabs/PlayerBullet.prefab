@@ -192,6 +192,15 @@ MonoBehaviour:
   _homingEnabled: 0
   _homingTime: 2
   _homingStrength: 200
+  _allowDamage: 0
+  _bulletDestroySound:
+    clip: {fileID: 0}
+    volume: 0
+    randomizePitch: 0
+    minPitch: 0
+    maxPitch: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
+  _bulletBreakParticle: {fileID: 0}
 --- !u!50 &7001130777723428873
 Rigidbody2D:
   serializedVersion: 4
@@ -262,5 +271,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.8, y: 0.8}
   m_EdgeRadius: 0

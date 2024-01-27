@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3013524758757400466}
   - component: {fileID: 5754080456792896674}
   - component: {fileID: 6684596055871441015}
+  - component: {fileID: 4970386066718461813}
   m_Layer: 8
   m_Name: ShockerEnemy
   m_TagString: Untagged
@@ -198,7 +199,8 @@ MonoBehaviour:
     Mode: 0
     MoveSteps: {x: 0, y: -5}
     Point: {x: 0, y: 0}
-    MoveTime: 2
+    RandomAroundPoint: {x: 0, y: 0}
+    MoveTime: 1
     OnReachNode:
       m_PersistentCalls:
         m_Calls:
@@ -219,6 +221,7 @@ MonoBehaviour:
     Mode: 1
     MoveSteps: {x: -5, y: 5}
     Point: {x: 0, y: 0}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0.3
     OnReachNode:
       m_PersistentCalls:
@@ -239,6 +242,7 @@ MonoBehaviour:
     Mode: 1
     MoveSteps: {x: 0, y: 0}
     Point: {x: 5.5, y: 3.5}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0.3
     OnReachNode:
       m_PersistentCalls:
@@ -259,6 +263,7 @@ MonoBehaviour:
     Mode: 1
     MoveSteps: {x: 0, y: 0}
     Point: {x: -3, y: 2.5}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0.3
     OnReachNode:
       m_PersistentCalls:
@@ -279,6 +284,7 @@ MonoBehaviour:
     Mode: 1
     MoveSteps: {x: 0, y: 0}
     Point: {x: 6, y: 1.5}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0.3
     OnReachNode:
       m_PersistentCalls:
@@ -299,6 +305,7 @@ MonoBehaviour:
     Mode: 1
     MoveSteps: {x: 0, y: 0}
     Point: {x: 2, y: 1.5}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0.3
     OnReachNode:
       m_PersistentCalls:
@@ -319,6 +326,7 @@ MonoBehaviour:
     Mode: 1
     MoveSteps: {x: 0, y: 0}
     Point: {x: -3, y: 0}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0.3
     OnReachNode:
       m_PersistentCalls:
@@ -336,3 +344,17 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   _chooseRandomNodes: 1
+--- !u!114 &4970386066718461813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3453574108711261407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fca150d8d05c4bca810ba3c172e0e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthListener: {fileID: 3013524758757400466}
+  _deathParticle: {fileID: 5274086535772667980, guid: 633c3697855e74676a2b178bef696956, type: 3}

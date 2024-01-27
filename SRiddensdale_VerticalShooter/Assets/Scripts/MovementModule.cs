@@ -25,6 +25,10 @@ public class MovementModule : MonoBehaviour
         [ShowIf(nameof(Mode), MoveMode.ToPoint)]
         public Vector2 Point;
 
+        [AllowNesting]
+        [ShowIf(nameof(Mode), MoveMode.ToPoint)]
+        public Vector2 RandomAroundPoint;
+
         public float MoveTime;
         public UnityEvent OnReachNode;
     }
@@ -138,7 +142,18 @@ public class MovementModule : MonoBehaviour
 
     private Vector2 GetTarget(MoveNode node)
     {
-        Vector2 target = target = node.Mode == MoveNode.MoveMode.Steps ? new Vector2(transform.position.x, transform.position.y) + node.MoveSteps : node.Point;
+        Vector2 target = Vector2.zero;
+
+        switch (node.Mode)
+        {
+            case MoveNode.MoveMode.Steps:
+                target = new Vector2(transform.position.x, transform.position.y) + node.MoveSteps;
+                break;
+
+            case MoveNode.MoveMode.ToPoint:
+                target = node.Point + new Vector2(Random.Range(-node.RandomAroundPoint.x, node.RandomAroundPoint.x), Random.Range(-node.RandomAroundPoint.y, node.RandomAroundPoint.y));
+                break;
+        }
 
         return target;
     }

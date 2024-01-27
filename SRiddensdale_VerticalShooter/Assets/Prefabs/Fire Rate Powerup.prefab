@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1.5}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &5171328158715934745
 MonoBehaviour:
@@ -170,6 +170,7 @@ MonoBehaviour:
     Mode: 0
     MoveSteps: {x: 0, y: 0}
     Point: {x: 0, y: 0}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0
     OnReachNode:
       m_PersistentCalls:
@@ -179,6 +180,7 @@ MonoBehaviour:
     Mode: 0
     MoveSteps: {x: 0, y: -25}
     Point: {x: 0, y: 0}
+    RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 4
     OnReachNode:
       m_PersistentCalls:

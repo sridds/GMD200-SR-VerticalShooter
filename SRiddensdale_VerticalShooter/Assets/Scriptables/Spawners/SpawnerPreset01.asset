@@ -45,7 +45,7 @@ MonoBehaviour:
   OnlyApplyCurveWhileFiring: 0
   AimAtTarget: 1
   FireRadius: 0.5
-  BurstCount: 2
+  BurstCount: 1
   ProjectilesPerBurst: 3
   AngleSpread: 144
   TimeBetweenBursts: 0.35

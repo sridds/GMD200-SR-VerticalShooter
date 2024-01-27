@@ -761,10 +761,10 @@ MonoBehaviour:
   _spawnables:
   - {fileID: 3453574108711261407, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
   - {fileID: 182860456568071371, guid: 0b9c9408a39be49228dccc9ff76d93ba, type: 3}
-  _minSpawnTime: 3
+  _minSpawnTime: 2
   _maxSpawnTime: 8
   _randomSpawnX: {x: -6, y: 6}
-  _allowedObjectsAtOnce: 5
+  _allowedObjectsAtOnce: 4
 --- !u!1 &861175714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc39d9a4b7d448e4af3cd3d0d3e4f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 50
+  _damage: 15
   _beamReleaseSound:
     clip: {fileID: 8300000, guid: b9136a7d8fcff45f9b46c0596a07860c, type: 3}
     volume: 0.721

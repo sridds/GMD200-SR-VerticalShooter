@@ -37,6 +37,9 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     public delegate void HealthUpdate(int oldHealth, int newHealth);
     public HealthUpdate OnHealthUpdate;
 
+    public delegate void HealthDepleted();
+    public HealthDepleted OnHealthDepleted;
+
     private void Start()
     {
         CurrentHealth = _maxHealth;
@@ -57,7 +60,8 @@ public class Health : MonoBehaviour, IDamagable, IHealable
         if (_doIFrames) StartCoroutine(HandleIFrames(_maxIFrames, _IFrameInterval));
 
         // call events
-        OnHealthUpdate?.Invoke(CurrentHealth + damageAmount, CurrentHealth);
+        if (CurrentHealth <= 0) OnHealthDepleted?.Invoke();
+        else OnHealthUpdate?.Invoke(CurrentHealth + damageAmount, CurrentHealth);
     }
 
     /// <summary>
