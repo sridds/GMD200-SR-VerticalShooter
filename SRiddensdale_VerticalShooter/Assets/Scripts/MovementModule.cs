@@ -30,6 +30,13 @@ public class MovementModule : MonoBehaviour
     }
 
     [SerializeField]
+    private bool _hasEnterence;
+
+    [ShowIf(nameof(_hasEnterence))]
+    [SerializeField]
+    private MoveNode _enterenceNode;
+
+    [SerializeField]
     private MoveNode[] _moveNodes;
 
     [SerializeField]
@@ -38,12 +45,25 @@ public class MovementModule : MonoBehaviour
     // different movement types - node based
     private Queue<MoveNode> moveQueue = new Queue<MoveNode>();
 
-    private void Start() => FillQueue();
+    private Coroutine queueHandleCoroutine;
+    private bool isEntered;
+
+    private void Start()
+    {
+        // enter
+        if (!isEntered && _hasEnterence)
+            moveQueue.Enqueue(_enterenceNode);
+
+        FillQueue();
+    }
 
     private void Update()
     {
         // refill
         if (moveQueue.Count == 0) FillQueue();
+
+        if (queueHandleCoroutine == null)
+            queueHandleCoroutine = StartCoroutine(HandleQueue());
     }
 
     /// <summary>
@@ -51,6 +71,8 @@ public class MovementModule : MonoBehaviour
     /// </summary>
     private void FillQueue()
     {
+        if (!isEntered && _hasEnterence) return;
+
         if(_moveNodes.Length == 0) {
             Debug.LogWarning("Could not execute move nodes. No movement nodes added");
             return;
@@ -76,8 +98,6 @@ public class MovementModule : MonoBehaviour
         foreach (MoveNode node in _moveNodes) {
             moveQueue.Enqueue(node);
         }
-
-        StartCoroutine(HandleQueue());
     }
 
     private System.Collections.IEnumerator HandleQueue()
@@ -109,6 +129,11 @@ public class MovementModule : MonoBehaviour
             transform.position = target;
             node.OnReachNode?.Invoke();
         }
+
+        isEntered = true;
+
+        yield return null;
+        queueHandleCoroutine = null;
     }
 
     private Vector2 GetTarget(MoveNode node)

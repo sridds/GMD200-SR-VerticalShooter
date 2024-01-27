@@ -179,6 +179,7 @@ public class Bullet : MonoBehaviour, IDamagable
 
         Destroy(gameObject);
         AudioHandler.instance.ProcessAudioData(_bulletDestroySound);
+        CameraShake.instance.Shake(0.3f, 0.15f);
 
         if (_bulletBreakParticle != null) Instantiate(_bulletBreakParticle, transform.position, Quaternion.identity);
     }

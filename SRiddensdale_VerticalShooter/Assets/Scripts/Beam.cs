@@ -19,6 +19,9 @@ public class Beam : MonoBehaviour
     [SerializeField]
     private BoxCollider2D _collider;
 
+    [SerializeField]
+    private ParticleSystem _beamParticle;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         // Call the damagable to take damage while it remains in the trigger
@@ -32,6 +35,7 @@ public class Beam : MonoBehaviour
     {
         _collider.enabled = true;
         _beamActiveSource.Play();
+        _beamParticle.Play();
 
         AudioHandler.instance.ProcessAudioData(_beamReleaseSound);
     }
@@ -41,6 +45,7 @@ public class Beam : MonoBehaviour
     {
         _collider.enabled = false;
         _beamActiveSource.Stop();
+        _beamParticle.Stop();
 
         AudioHandler.instance.ProcessAudioData(_beamCloseSound);
     }

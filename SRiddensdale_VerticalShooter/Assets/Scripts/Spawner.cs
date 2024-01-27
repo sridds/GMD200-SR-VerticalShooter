@@ -22,9 +22,11 @@ public class Spawner : MonoBehaviour
     [SerializeField, Tooltip("Determines whether the spawn is handled by this script or by another script. This allows flexibility for enemies and player")]
     private SpawnCall _spawnCall;
 
+    public bool ready = true;
+
     [ShowIf(nameof(_spawnCall), SpawnCall.ControlledByScript)]
     [SerializeField]
-    private bool _ignoreRestTime;
+    private bool _ignoreRestTime = false;
 
     // private fields
     Quaternion angleRot = Quaternion.identity;
@@ -47,12 +49,14 @@ public class Spawner : MonoBehaviour
         target = FindObjectOfType<PlayerMovement>().transform;
     }
 
+    public void ReadyUp() => ready = true;
+
     void Update()
     {
         // updates the sin angle and spin rate of the curve
         UpdateAngularMotion();
         // fires bullets
-        if (_spawnCall == SpawnCall.ControlledByScript) return;
+        if (_spawnCall == SpawnCall.ControlledByScript || !ready) return;
         Fire();
     }
 
@@ -131,8 +135,10 @@ public class Spawner : MonoBehaviour
         // play fire sound
         if (activeData.PlayFireAfterBurst) AudioHandler.instance.ProcessAudioData(activeData.FireSound);
 
-        if(_ignoreRestTime)
+        //if (_ignoreRestTime)
+        //{
             yield return new WaitForSeconds(activeData.RestTime);
+        //}
 
         activeFireCoroutine = null;
     }
@@ -180,8 +186,6 @@ public class Spawner : MonoBehaviour
         float x = transform.position.x + activeData.FireRadius * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
         float y = transform.position.y + activeData.FireRadius * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
         Vector2 pos = new Vector2(x, y);
-
-        Debug.Log(pos);
 
         return pos;
     }
