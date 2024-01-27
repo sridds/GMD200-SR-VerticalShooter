@@ -164,6 +164,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a788fd5081ad24619845ae0b72aee697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hasEnterence: 0
+  _enterenceNode:
+    Delay: 0
+    Mode: 0
+    MoveSteps: {x: 0, y: 0}
+    Point: {x: 0, y: 0}
+    MoveTime: 0
+    OnReachNode:
+      m_PersistentCalls:
+        m_Calls: []
   _moveNodes:
   - Delay: 0
     Mode: 0
@@ -173,7 +183,7 @@ MonoBehaviour:
     OnReachNode:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1563271544713557353, guid: 884d8618eced748bcbe21f296035fb26, type: 3}
+        - m_Target: {fileID: 5171328158715934745}
           m_TargetAssemblyTypeName: CollectablePowerup, Assembly-CSharp
           m_MethodName: Despawn
           m_Mode: 1
