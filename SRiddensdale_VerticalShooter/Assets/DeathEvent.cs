@@ -10,6 +10,9 @@ public class DeathEvent : MonoBehaviour
     [SerializeField]
     private ParticleSystem _deathParticle;
 
+    [SerializeField]
+    private AudioData _deathSound;
+
     private void Start()
     {
         _healthListener.OnHealthDepleted += CallDeath;
@@ -17,7 +20,10 @@ public class DeathEvent : MonoBehaviour
 
     private void CallDeath()
     {
-        Instantiate(_deathParticle, transform.position, Quaternion.identity);
+        // instantiate only if the death particle exists
+        if(_deathParticle != null) Instantiate(_deathParticle, transform.position, Quaternion.identity);
+
+        AudioHandler.instance.ProcessAudioData(_deathSound);
 
         Destroy(gameObject);
     }
