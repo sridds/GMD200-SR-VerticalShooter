@@ -150,7 +150,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -5124603864050455524, guid: b1eb559e142314e88b0d650372743a7f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 42f83cc35212b46c3bbff3496296c497, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0d6a0809c71e042e9b08f8b935d10da4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.471
   m_Pitch: 1
@@ -404,9 +404,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.20000002
+    x: 0
     y: 0
-    width: 0.6
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -424,7 +424,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -1252,63 +1252,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1195043075
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.0378904
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.9435616
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 822166642844754051, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3453574108711261407, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
-      propertyPath: m_Name
-      value: ShockerEnemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
 --- !u!1 &1238862918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1462,7 +1405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7ee5feb297341b8a9646a7d2c7e29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: {x: 0, y: 0.3}
+  scrollSpeed: {x: 0, y: 0.9}
   image: {fileID: 1258888063}
   unscaledTime: 0
 --- !u!114 &1258888063
@@ -7409,7 +7352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7ee5feb297341b8a9646a7d2c7e29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: {x: 0, y: 0.15}
+  scrollSpeed: {x: 0, y: 0.6}
   image: {fileID: 2092286069}
   unscaledTime: 0
 --- !u!114 &2092286069
@@ -7460,4 +7403,3 @@ SceneRoots:
   - {fileID: 1179416359}
   - {fileID: 257749455}
   - {fileID: 777321233}
-  - {fileID: 1195043075}
