@@ -25,6 +25,8 @@ public class GameHUD : MonoBehaviour
     private AudioData _pauseSound;
     [SerializeField]
     private AudioData _uiHoverSound;
+    [SerializeField]
+    private AudioData _uiSelectSound;
 
     int pauseMenuIndex;
 
@@ -79,6 +81,27 @@ public class GameHUD : MonoBehaviour
 
             // update selection if index changed
             if (pauseMenuIndex != index) UpdateSelection();
+
+            // Select
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                switch (pauseMenuIndex)
+                {
+                    case 0:
+                        GameManager.instance.UpdateGameState();
+                        break;
+                    case 1:
+                        GameManager.instance.RestartLevel();
+                        break;
+                    case 2:
+                        Debug.Log("menu");
+                        break;
+                    default:
+                        break;
+                }
+
+                AudioHandler.instance.ProcessAudioData(_uiSelectSound);
+            }
         }
     }
 

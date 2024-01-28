@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour
     public delegate void GameOver();
     public GameOver OnGameOver;
 
+    [SerializeField]
+    private Animator _fadeTransition;
+    [SerializeField]
+    private float _restartTime = 0.5f;
+
     // fields
     private float timeScaleBeforePause;
     private Player cachedPlayer;
@@ -48,7 +54,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Handles the updating of the game  state
     /// </summary>
-    private void UpdateGameState()
+    public void UpdateGameState()
     {
         if (CurrentGameState == GameState.Playing && !IsGameOver) PauseGame();
         else if (CurrentGameState == GameState.Paused && !IsGameOver) UnpauseGame();
@@ -63,6 +69,18 @@ public class GameManager : MonoBehaviour
 
         OnGameOver?.Invoke();
         IsGameOver = true;
+    }
+
+    public void RestartLevel()
+    {
+        StartCoroutine(IRestartLevel());
+    }
+
+    private IEnumerator IRestartLevel()
+    {
+        _fadeTransition.SetTrigger("FadeOut");
+        yield return new WaitForSecondsRealtime(_restartTime);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     /// <summary>
