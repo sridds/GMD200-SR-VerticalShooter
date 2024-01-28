@@ -14,6 +14,8 @@ public class BulletGrazer : MonoBehaviour
     private float _grazeInterval = 0.25f;
     [SerializeField]
     private LayerMask _bulletGrazeLayer;
+    [SerializeField]
+    private int _grazePointValue = 25;
 
     [Header("References")]
     [SerializeField]
@@ -57,6 +59,8 @@ public class BulletGrazer : MonoBehaviour
         grazeTimer = _grazeInterval;
         _grazeVisual.color = new Color(_grazeVisual.color.r, _grazeVisual.color.g, _grazeVisual.color.b, 0.6f);
         AudioHandler.instance.ProcessAudioData(_grazeSound);
+
+        GameManager.instance.AddPoints(_grazePointValue);
 
         OnGrazed?.Invoke();
     }

@@ -13,6 +13,9 @@ public class DeathEvent : MonoBehaviour
     [SerializeField]
     private AudioData _deathSound;
 
+    [SerializeField]
+    private int _deathPointValue = 100;
+
     private void Start()
     {
         _healthListener.OnHealthDepleted += CallDeath;
@@ -24,6 +27,9 @@ public class DeathEvent : MonoBehaviour
         if(_deathParticle != null) Instantiate(_deathParticle, transform.position, Quaternion.identity);
 
         AudioHandler.instance.ProcessAudioData(_deathSound);
+
+        // add points
+        if(_deathPointValue > 0) GameManager.instance.AddPoints(_deathPointValue);
 
         Destroy(gameObject);
     }

@@ -61,6 +61,8 @@ public class Bullet : MonoBehaviour, IDamagable
     private AudioData _bulletDestroySound;
     [SerializeField]
     private ParticleSystem _bulletBreakParticle;
+    [SerializeField]
+    private int _destroyPointValue = 25;
 
     private float aliveTime;
     private float speedFactor;
@@ -169,6 +171,8 @@ public class Bullet : MonoBehaviour, IDamagable
         if(collision.TryGetComponent<IDamagable>(out IDamagable damagable))
         {
             damagable.TakeDamage(_damageAmt);
+            GameManager.instance.AddPoints(_destroyPointValue);
+
             Destroy(gameObject);
         }
     }

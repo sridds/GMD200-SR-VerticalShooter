@@ -16,6 +16,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Supercharge _playerSupercharge;
 
+    [Header("VFX")]
+    [SerializeField]
+    private int _lowHealth;
+
+    [SerializeField]
+    private ParticleSystem _playerLowHealthParticles;
+
     public Health PlayerHealth { get { return _playerHealth; } }
     public Powerup ActivePowerup { get; private set; }
     public Spawner PlayerGun { get { return _playerGun; } }
@@ -69,9 +76,15 @@ public class Player : MonoBehaviour
             // damaged
             CameraShake.instance.Shake(0.6f, 0.4f);
             GameManager.instance.SetTimeScale(0.25f, 0.25f);
+            AudioHandler.instance.FadeToPitch(0.15f, 0.8f, true);
 
             Invoke(nameof(SetTimeScaleBack), 0.25f);
         }
+
+        // play low health particles
+        if (newHealth < _lowHealth) _playerLowHealthParticles.Play();
+        else _playerLowHealthParticles.Stop();
+
     }
 
     /// <summary>
@@ -96,7 +109,12 @@ public class Player : MonoBehaviour
         ActivePowerup = null;
     }
 
-    private void SetTimeScaleBack() => GameManager.instance.SetTimeScale(1f, 0.5f);
+    private void SetTimeScaleBack()
+    {
+        GameManager.instance.SetTimeScale(1f, 0.5f);
+        AudioHandler.instance.FadeToPitch(0.5f, 1f);
+        //AudioHandler.instance
+    }
 
     private void DashIFrames() => _playerHealth.CallIFrames(15, _playerMovement.DashTime / (float)15);
 }

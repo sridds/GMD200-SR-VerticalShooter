@@ -72,6 +72,28 @@ public class AudioHandler : MonoBehaviour
     /// <param name="time"></param>
     public void FadeMusic(float time, float volume) => musicCoroutineQueue.Enqueue(IFadeToVolume(musicSource, time, volume, true));
 
+    public void FadeToPitch(float time, float pitch, bool useUnscaled = false) => StartCoroutine(IFadeToPitch(time, pitch, useUnscaled));
+
+
+    private IEnumerator IFadeToPitch(float time, float pitch, bool useUnscaled)
+    {
+        float elapsed = 0.0f;
+        float initial = musicSource.pitch;
+
+        // lerp pitch
+        while(elapsed < time)
+        {
+            musicSource.pitch = Mathf.Lerp(initial, pitch, elapsed / time);
+
+            if(useUnscaled) elapsed += Time.unscaledDeltaTime;
+            else elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        musicSource.pitch = pitch;
+    }
+
 
     /// <summary>
     /// Fades out the current music track and fades into the next one sequentially

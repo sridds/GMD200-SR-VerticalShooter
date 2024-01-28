@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public delegate void GameStateChanged(GameState state);
     public GameStateChanged OnGameStateChanged;
 
+    public delegate void GameOver();
+    public GameOver OnGameOver;
+
     // fields
     private float timeScaleBeforePause;
     private Player cachedPlayer;

@@ -201,6 +201,7 @@ MonoBehaviour:
     maxPitch: 0
     spawnPosition: {x: 0, y: 0, z: 0}
   _bulletBreakParticle: {fileID: 0}
+  _destroyPointValue: 0
 --- !u!50 &7001130777723428873
 Rigidbody2D:
   serializedVersion: 4

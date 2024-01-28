@@ -10,6 +10,9 @@ public class CollectablePowerup : MonoBehaviour
     [SerializeField]
     private AudioData _audioCollect;
 
+    [SerializeField]
+    private int _powerupPointValue = 50;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // call collect if player triggered the object
@@ -19,6 +22,7 @@ public class CollectablePowerup : MonoBehaviour
 
             _powerup.Collect();
             AudioHandler.instance.ProcessAudioData(_audioCollect);
+            GameManager.instance.AddPoints(_powerupPointValue);
 
             Destroy(gameObject);
         }
