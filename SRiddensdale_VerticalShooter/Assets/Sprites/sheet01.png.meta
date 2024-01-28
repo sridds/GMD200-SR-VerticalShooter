@@ -703,8 +703,8 @@ TextureImporter:
         serializedVersion: 2
         x: 16
         y: 81
-        width: 16
-        height: 16
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -727,7 +727,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -735,6 +735,69 @@ TextureImporter:
       bones: []
       spriteID: 83f85bb3ec24b4d95b73d87e786c9d22
       internalID: 328057256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sheet01_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad4e5f274e77245e2ac828e6c1658463
+      internalID: -1825675984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sheet01_31
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 19
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0261082babb3472bbf5ad841cdc70a7
+      internalID: -373990932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sheet01_32
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 19
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 749ce828982ec406d947003f97900d5a
+      internalID: 2045548402
       vertices: []
       indices: 
       edges: []
@@ -774,6 +837,9 @@ TextureImporter:
       sheet01_28: 1474041970
       sheet01_29: 328057256
       sheet01_3: -792410299
+      sheet01_30: -1825675984
+      sheet01_31: -373990932
+      sheet01_32: 2045548402
       sheet01_4: -1432755815
       sheet01_5: -1854556253
       sheet01_6: -1986820774

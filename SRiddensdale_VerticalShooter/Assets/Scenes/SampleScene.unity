@@ -1611,7 +1611,7 @@ MonoBehaviour:
   _chargeAnimation: {fileID: 1536985663}
   _beam: {fileID: 1536985665}
   _chargeUpSource: {fileID: 1350445332}
-  _chargeDuration: 2
+  _chargeDuration: 2.5
   _chargeCooldown: 10
 --- !u!82 &1350445332
 AudioSource:
@@ -1626,7 +1626,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 5ec5064cca6ff40d5ad408f512df7fba, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.564
-  m_Pitch: 1
+  m_Pitch: 1.2
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -1885,7 +1885,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 052b3c2eb8a244c3aa707a3803067017, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
-  m_Pitch: 1
+  m_Pitch: 1.1
   Loop: 1
   Mute: 0
   Spatialize: 0
