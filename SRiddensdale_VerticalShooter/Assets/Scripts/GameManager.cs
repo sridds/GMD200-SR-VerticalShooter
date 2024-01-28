@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public float TimePlaying { get; private set; }
     public GameState CurrentGameState { get; private set; }
     public Player ActivePlayer { get { if (cachedPlayer == null) cachedPlayer = FindAnyObjectByType<Player>(); return cachedPlayer; } }
+    public bool IsGameOver { get; private set; }
 
     // Delegates
     public delegate void PointUpdate(int oldPoints, int newPoints);
@@ -49,11 +50,19 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void UpdateGameState()
     {
-        if (CurrentGameState == GameState.Playing) PauseGame();
-        else if (CurrentGameState == GameState.Paused) UnpauseGame();
+        if (CurrentGameState == GameState.Playing && !IsGameOver) PauseGame();
+        else if (CurrentGameState == GameState.Paused && !IsGameOver) UnpauseGame();
 
         // invoke the event if any are subscribed
         OnGameStateChanged?.Invoke(CurrentGameState);
+    }
+
+    public void CallGameOver()
+    {
+        if (IsGameOver) return;
+
+        OnGameOver?.Invoke();
+        IsGameOver = true;
     }
 
     /// <summary>

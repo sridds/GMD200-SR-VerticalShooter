@@ -23,6 +23,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private ParticleSystem _playerLowHealthParticles;
 
+    [Header("Death Animation")]
+    [SerializeField]
+    private GameObject _spritesHolder;
+
+    [SerializeField]
+    private ParticleSystem _playerDeathParticle;
+
     public Health PlayerHealth { get { return _playerHealth; } }
     public Powerup ActivePowerup { get; private set; }
     public Spawner PlayerGun { get { return _playerGun; } }
@@ -31,12 +38,14 @@ public class Player : MonoBehaviour
     {
         _playerMovement.OnDashStart += DashIFrames;
         _playerHealth.OnHealthUpdate += HealthUpdate;
+        _playerHealth.OnHealthDepleted += Dead;
     }
 
     private void OnDisable()
     {
         _playerMovement.OnDashStart -= DashIFrames;
         _playerHealth.OnHealthUpdate -= HealthUpdate;
+        _playerHealth.OnHealthDepleted -= Dead;
     }
 
     void Update()
@@ -84,7 +93,21 @@ public class Player : MonoBehaviour
         // play low health particles
         if (newHealth < _lowHealth) _playerLowHealthParticles.Play();
         else _playerLowHealthParticles.Stop();
+    }
 
+    private void Dead() => StartCoroutine(GameOver());
+
+    private IEnumerator GameOver()
+    {
+        GameManager.instance.CallGameOver();
+        _spritesHolder.SetActive(false);
+        _playerDeathParticle.Play();
+
+        CameraShake.instance.Shake(1.3f, 1f);
+        GameManager.instance.SetTimeScale(0f, 5f);
+        AudioHandler.instance.FadeToPitch(5f, 0f, true);
+
+        yield return new WaitForSeconds(5);
     }
 
     /// <summary>

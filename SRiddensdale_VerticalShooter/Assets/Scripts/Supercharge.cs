@@ -29,7 +29,7 @@ public class Supercharge : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.X) && !onCooldown) {
+        if (Input.GetKey(KeyCode.X) && !onCooldown && !GameManager.instance.IsGameOver) {
             _animator.SetBool("Charging", true);
             IsChargingUp = true;
 
@@ -48,6 +48,16 @@ public class Supercharge : MonoBehaviour
             IsReleasingCharge = true;
             onCooldown = true;
             StartCoroutine(ReleaseSupercharge());
+        }
+
+        // quick disable beam while game is over
+        if (GameManager.instance.IsGameOver && IsReleasingCharge)
+        {
+            StopAllCoroutines();
+
+            _chargeAnimation.SetTrigger("CloseBeam");
+            _beam.DisableBeam();
+            IsReleasingCharge = false;
         }
     }
 

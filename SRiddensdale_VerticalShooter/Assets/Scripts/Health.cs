@@ -32,6 +32,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     public bool IFramesActive { get; private set; }
 
     private bool canDamage = true;
+    private bool healthDepleted = false;
 
     // events
     public delegate void HealthUpdate(int oldHealth, int newHealth);
@@ -52,6 +53,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     public void TakeDamage(int damageAmount)
     {
         if (!canDamage) return;
+        if (healthDepleted) return;
 
         CurrentHealth -= damageAmount;
         AudioHandler.instance.ProcessAudioData(_damageSound);
@@ -60,8 +62,15 @@ public class Health : MonoBehaviour, IDamagable, IHealable
         if (_doIFrames) StartCoroutine(HandleIFrames(_maxIFrames, _IFrameInterval));
 
         // call events
-        if (CurrentHealth <= 0) OnHealthDepleted?.Invoke();
-        else OnHealthUpdate?.Invoke(CurrentHealth + damageAmount, CurrentHealth);
+        if (CurrentHealth <= 0)
+        {
+            OnHealthDepleted?.Invoke();
+            healthDepleted = true;
+        }
+        else
+        {
+            OnHealthUpdate?.Invoke(CurrentHealth + damageAmount, CurrentHealth);
+        }
     }
 
     /// <summary>
@@ -70,6 +79,8 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     /// <param name="health"></param>
     public void Heal(int healAmount)
     {
+        if (healthDepleted) return;
+
         // get the old and new health
         int oldHealth = CurrentHealth;
 
