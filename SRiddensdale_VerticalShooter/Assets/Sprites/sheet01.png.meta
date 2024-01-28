@@ -302,12 +302,12 @@ TextureImporter:
       name: sheet01_9
       rect:
         serializedVersion: 2
-        x: 49
-        y: 104
-        width: 3
-        height: 8
+        x: 112
+        y: 80
+        width: 7
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -323,12 +323,12 @@ TextureImporter:
       name: sheet01_10
       rect:
         serializedVersion: 2
-        x: 52
-        y: 104
-        width: 3
-        height: 8
+        x: 121
+        y: 80
+        width: 7
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,153 +336,6 @@ TextureImporter:
       bones: []
       spriteID: 96b62af6d129a4695ab15c5e121a273f
       internalID: -396408440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet01_11
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 104
-        width: 4
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b049ca7b5de2c477d86c79ad1a8a1df9
-      internalID: 1757120818
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet01_12
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 96
-        width: 3
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b76d4e1b514d54b63a818378696b3629
-      internalID: -124552677
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet01_13
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 96
-        width: 3
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d31ada53529c240a4816da1098d96dab
-      internalID: -1555405343
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet01_14
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 96
-        width: 4
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2a84e717da780426bbf6343004123377
-      internalID: -1570317040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet01_15
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 104
-        width: 3
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bdff1829ae9634238aecf50ac8a5cc36
-      internalID: 1625977865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet01_16
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 104
-        width: 3
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 42a00c8916b034d56b5726c61e57daec
-      internalID: -846168006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sheet01_17
-      rect:
-        serializedVersion: 2
-        x: 71
-        y: 104
-        width: 4
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 60ca629e6a8a5437490cda822538af0e
-      internalID: 1063124478
       vertices: []
       indices: 
       edges: []

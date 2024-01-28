@@ -207,7 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb43264a49824e21b94e0a624dd358e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 0
   _maxHealth: 100
+  _maxHits: 0
   _doIFrames: 1
   _maxIFrames: 1
   _IFrameInterval: 0.05
@@ -247,6 +249,7 @@ MonoBehaviour:
     minPitch: 0.9
     maxPitch: 1
     spawnPosition: {x: 0, y: 0, z: 0}
+  _deathPointValue: 100
 --- !u!95 &6402736802712282116
 Animator:
   serializedVersion: 5
