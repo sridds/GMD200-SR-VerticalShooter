@@ -114,9 +114,10 @@ public class Player : MonoBehaviour
         GameManager.instance.SetTimeScale(0f, 5f);
         AudioHandler.instance.FadeToPitch(5f, 0f, true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1.5f);
         AudioHandler.instance.ProcessAudioData(_deathLaugh);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSecondsRealtime(5);
+        GameManager.instance.RestartLevel();
     }
 
     /// <summary>

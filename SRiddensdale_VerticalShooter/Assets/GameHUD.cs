@@ -9,6 +9,8 @@ public class GameHUD : MonoBehaviour
     private TextMeshProUGUI _scoreText;
     [SerializeField]
     private GameObject _heart;
+    [SerializeField]
+    private Transform _heartHolder;
 
     [Header("Pause Menu")]
     [SerializeField]
@@ -156,7 +158,7 @@ public class GameHUD : MonoBehaviour
         // creates as many hearts the player has
         for(int i = 0; i < GameManager.instance.ActivePlayer.PlayerHealth.MaxHealth; i++)
         {
-            GameObject go = Instantiate(_heart, transform);
+            GameObject go = Instantiate(_heart, _heartHolder);
             go.GetComponent<RectTransform>().anchoredPosition = new Vector2(posX, -493);
             healthObjects.Add(go);
 
