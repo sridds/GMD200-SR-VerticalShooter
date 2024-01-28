@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class AudioHandler : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class AudioHandler : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource bassLineSource;
     [SerializeField] private AudioSource soundPrefab;
 
     // Holds a queue of music volume actions
     private Queue<IEnumerator> musicCoroutineQueue = new Queue<IEnumerator>();
     private Coroutine activeMusicCoroutine = null;
 
+    private float prePauseVolume;
 
     /// <summary>
     /// Sets up the instance
@@ -29,10 +32,13 @@ public class AudioHandler : MonoBehaviour
     private void UpdateMusicState(GameManager.GameState state)
     {
         if (state == GameManager.GameState.Paused) PauseMusic();
-        else musicSource.Play();
+        else musicSource.volume = prePauseVolume;
     }
 
-    public void PauseMusic() => musicSource.Pause();
+    public void PauseMusic() {
+        prePauseVolume = musicSource.volume;
+        musicSource.volume = 0.0f;
+    }
 
     private void Update()
     {
@@ -98,13 +104,16 @@ public class AudioHandler : MonoBehaviour
         {
             musicSource.pitch = Mathf.Lerp(initial, pitch, elapsed / time);
 
-            if(useUnscaled) elapsed += Time.unscaledDeltaTime;
+            if(bassLineSource != null) bassLineSource.pitch = musicSource.pitch;
+
+            if (useUnscaled) elapsed += Time.unscaledDeltaTime;
             else elapsed += Time.deltaTime;
 
             yield return null;
         }
 
         musicSource.pitch = pitch;
+        if (bassLineSource != null) bassLineSource.pitch = musicSource.pitch;
     }
 
 
@@ -179,12 +188,15 @@ public class AudioHandler : MonoBehaviour
         while (elapsedTime < time)
         {
             source.volume = Mathf.Lerp(initialVolume, volume, elapsedTime / time);
+            if (bassLineSource != null) bassLineSource.volume = source.volume;
+
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
 
         source.volume = volume;
+        if (bassLineSource != null) bassLineSource.volume = source.volume;
 
         // This is here to specify whether this coroutine was called within the queue as an independent action or called from another coroutine.
         if (setMusicCoroutineNull) activeMusicCoroutine = null;
