@@ -34,6 +34,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioData _powerupExpireSound;
 
+    [SerializeField]
+    private AudioData _deathLaugh;
+
     public Health PlayerHealth { get { return _playerHealth; } }
     public Powerup ActivePowerup { get; private set; }
     public Spawner PlayerGun { get { return _playerGun; } }
@@ -111,6 +114,8 @@ public class Player : MonoBehaviour
         GameManager.instance.SetTimeScale(0f, 5f);
         AudioHandler.instance.FadeToPitch(5f, 0f, true);
 
+        yield return new WaitForSeconds(1);
+        AudioHandler.instance.ProcessAudioData(_deathLaugh);
         yield return new WaitForSeconds(5);
     }
 

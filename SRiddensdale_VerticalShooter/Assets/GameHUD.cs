@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using static GameManager;
 
 public class GameHUD : MonoBehaviour
 {
@@ -20,6 +19,12 @@ public class GameHUD : MonoBehaviour
     private Color _textSelectColor;
     [SerializeField]
     private Color _textDefaultColor;
+
+    [Header("Sounds")]
+    [SerializeField]
+    private AudioData _pauseSound;
+    [SerializeField]
+    private AudioData _uiHoverSound;
 
     int pauseMenuIndex;
 
@@ -57,17 +62,19 @@ public class GameHUD : MonoBehaviour
     {
         int index = pauseMenuIndex;
 
-        if(GameManager.instance.CurrentGameState == GameState.Paused)
+        if(GameManager.instance.CurrentGameState == GameManager.GameState.Paused)
         {
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 pauseMenuIndex++;
                 pauseMenuIndex = (pauseMenuIndex % _pauseMenuSelections.Length + _pauseMenuSelections.Length) % _pauseMenuSelections.Length;
+                AudioHandler.instance.ProcessAudioData(_uiHoverSound);
             }
             else if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 pauseMenuIndex--;
                 pauseMenuIndex = (pauseMenuIndex % _pauseMenuSelections.Length + _pauseMenuSelections.Length) % _pauseMenuSelections.Length;
+                AudioHandler.instance.ProcessAudioData(_uiHoverSound);
             }
 
             // update selection if index changed
@@ -79,13 +86,15 @@ public class GameHUD : MonoBehaviour
     /// Called externally once whenever the game state is changed
     /// </summary>
     /// <param name="state"></param>
-    private void UpdatePauseMenu(GameState state)
+    private void UpdatePauseMenu(GameManager.GameState state)
     {
-        if(state == GameState.Paused)
+        if(state == GameManager.GameState.Paused)
         {
             _pauseHolder.SetActive(true);
             pauseMenuIndex = 0;
             UpdateSelection();
+
+            AudioHandler.instance.ProcessAudioData(_pauseSound);
         }
         else
         {

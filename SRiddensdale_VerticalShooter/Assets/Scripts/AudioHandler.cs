@@ -21,6 +21,21 @@ public class AudioHandler : MonoBehaviour
     /// </summary>
     private void Awake() => instance = this;
 
+    private void Start()
+    {
+        GameManager.instance.OnGameStateChanged += UpdateMusicState;
+    }
+
+    private void UpdateMusicState(GameManager.GameState state)
+    {
+        if (state == GameManager.GameState.Paused) {
+            musicSource.Pause();
+        }
+        else {
+            musicSource.Play();
+        }
+    }
+
     private void Update()
     {
         UpdateMusicQueue();
