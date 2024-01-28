@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     private Animator _fadeTransition;
     [SerializeField]
     private float _restartTime = 0.5f;
+    [SerializeField]
+    private SpecialText _specialTextPrefab;
+    [SerializeField]
+    private Transform _specialTextHolder;
 
     // fields
     private float timeScaleBeforePause;
@@ -69,6 +73,12 @@ public class GameManager : MonoBehaviour
 
         OnGameOver?.Invoke();
         IsGameOver = true;
+    }
+
+    public void CreateSpecialText(string txt)
+    {
+        SpecialText t = Instantiate(_specialTextPrefab, _specialTextHolder);
+        t.SetText(txt);
     }
 
     public void RestartLevel() => StartCoroutine(ISceneTransition(SceneManager.GetActiveScene().buildIndex));

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ffd9af3579ac4f4dae13588be19226e, type: 3}
   m_Name: BulletIncreasePowerup
   m_EditorClassIdentifier: 
+  displayName: TRIPLE FIRE
   _powerupDuration: 10
   _swapSpawner: {fileID: 11400000, guid: 37132df647e4840e79db8a43fe6d1299, type: 2}

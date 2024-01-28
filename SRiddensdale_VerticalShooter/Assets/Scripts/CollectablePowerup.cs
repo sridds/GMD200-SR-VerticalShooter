@@ -23,7 +23,7 @@ public class CollectablePowerup : MonoBehaviour
             _powerup.Collect();
             AudioHandler.instance.ProcessAudioData(_audioCollect);
             GameManager.instance.AddPoints(_powerupPointValue);
-
+            GameManager.instance.CreateSpecialText(_powerup.displayName);
             Destroy(gameObject);
         }
     }

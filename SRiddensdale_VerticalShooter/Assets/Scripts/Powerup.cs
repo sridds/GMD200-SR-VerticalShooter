@@ -2,6 +2,7 @@ using UnityEngine;
 
 public abstract class Powerup : ScriptableObject
 {
+    public string displayName;
     [SerializeField]
     protected float _powerupDuration = 10.0f;
     protected float lifetime = 0.0f;

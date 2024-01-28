@@ -14,6 +14,8 @@ public class Supercharge : MonoBehaviour
     private Beam _beam;
     [SerializeField]
     private AudioSource _chargeUpSource;
+    [SerializeField]
+    private AudioData _chargeReadySound;
 
     [Header("Properties")]
     [SerializeField]
@@ -86,6 +88,8 @@ public class Supercharge : MonoBehaviour
         IsReleasingCharge = false;
 
         yield return new WaitForSeconds(_chargeCooldown);
+        GameManager.instance.CreateSpecialText("CHARGE READY");
+        AudioHandler.instance.ProcessAudioData(_chargeReadySound);
 
         onCooldown = false;
     }

@@ -14,6 +14,8 @@ public class StartMenu : MonoBehaviour
     [SerializeField]
     private float _menuHoldTime = 3.0f;
     [SerializeField]
+    private GameObject _menuElements;
+    [SerializeField]
     private AudioData _selectSound;
 
     private bool canSelect = false;
@@ -21,10 +23,15 @@ public class StartMenu : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1.0f;
+        _menuElements.SetActive(false);
         Invoke(nameof(CanSelect), _waitTime);
     }
 
-    private void CanSelect() => canSelect = true;
+    private void CanSelect()
+    {
+        _menuElements.SetActive(true);
+        canSelect = true;
+    }
 
     private void Update()
     {
