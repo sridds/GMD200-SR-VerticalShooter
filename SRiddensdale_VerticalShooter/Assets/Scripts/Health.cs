@@ -4,9 +4,23 @@ using System.Collections;
 
 public class Health : MonoBehaviour, IDamagable, IHealable
 {
-    [Header("Preferences")]
+    public enum HealthMode
+    {
+        Value,
+        Increments
+    }
+
+    [Header("Health")]
+    [SerializeField]
+    private HealthMode mode;
+
+    [ShowIf(nameof(mode), HealthMode.Value)]
     [SerializeField, Min(1)]
     private int _maxHealth;
+
+    [ShowIf(nameof(mode), HealthMode.Increments)]
+    [SerializeField, Min(1)]
+    private int _maxHits;
 
     [Header("IFrames")]
     [SerializeField]
@@ -29,6 +43,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
     private AudioData _healSound;
 
     public int CurrentHealth { get; private set; }
+    public int MaxHealth { get { return mode == HealthMode.Value ? _maxHealth : _maxHits; } }
     public bool IFramesActive { get; private set; }
 
     private bool canDamage = true;
@@ -43,7 +58,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
 
     private void Start()
     {
-        CurrentHealth = _maxHealth;
+        CurrentHealth = mode == HealthMode.Value ? _maxHealth : _maxHits;
     }
 
     /// <summary>
@@ -55,7 +70,7 @@ public class Health : MonoBehaviour, IDamagable, IHealable
         if (!canDamage) return;
         if (healthDepleted) return;
 
-        CurrentHealth -= damageAmount;
+        CurrentHealth -= mode == HealthMode.Value ? damageAmount : 1;
         AudioHandler.instance.ProcessAudioData(_damageSound);
 
         // call the iframes coroutine

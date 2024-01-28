@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && activeDashCoroutine == null && playerInput != Vector2.zero && !OverrideDash) {
+        if (Input.GetKeyDown(KeyCode.C) && activeDashCoroutine == null && playerInput != Vector2.zero && !OverrideDash) {
             activeDashCoroutine = StartCoroutine(Dash());
         }
 

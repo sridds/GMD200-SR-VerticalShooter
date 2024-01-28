@@ -5845,8 +5845,8 @@ MonoBehaviour:
   - {fileID: 3453574108711261407, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
   - {fileID: 182860456568071371, guid: 0b9c9408a39be49228dccc9ff76d93ba, type: 3}
   - {fileID: 1576791701729355264, guid: 58452d244b2d94036b68938a32b38bea, type: 3}
-  _minSpawnTime: 2
-  _maxSpawnTime: 7
+  _minSpawnTime: 4
+  _maxSpawnTime: 9
   _randomSpawnX: {x: -6, y: 6}
   _allowedObjectsAtOnce: 5
 --- !u!1 &802339193
@@ -5963,7 +5963,7 @@ ParticleSystem:
   m_GameObject: {fileID: 802339193}
   serializedVersion: 8
   lengthInSec: 0.05
-  simulationSpeed: 1
+  simulationSpeed: 0.8
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -6027,7 +6027,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -10964,7 +10964,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb43264a49824e21b94e0a624dd358e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 1
+  mode: 1
+  _maxHealth: 100
+  _maxHits: 8
   _doIFrames: 1
   _maxIFrames: 15
   _IFrameInterval: 0.05
@@ -11026,7 +11028,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 960757425}
   _playerHealth: {fileID: 960757430}
   _playerSupercharge: {fileID: 1350445331}
-  _lowHealth: 30
+  _lowHealth: 3
   _playerLowHealthParticles: {fileID: 207502735}
   _spritesHolder: {fileID: 600719654}
   _playerDeathParticle: {fileID: 802339196}
@@ -17504,6 +17506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 238858425}
+  _heart: {fileID: 7744216640157855604, guid: b96955b11d07042c891db6a3bf3463bc, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
