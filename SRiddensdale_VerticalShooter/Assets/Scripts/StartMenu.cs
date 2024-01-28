@@ -17,6 +17,8 @@ public class StartMenu : MonoBehaviour
     private GameObject _menuElements;
     [SerializeField]
     private AudioData _selectSound;
+    [SerializeField]
+    private GameObject _whiteFlash;
 
     private bool canSelect = false;
 
@@ -39,6 +41,7 @@ public class StartMenu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z)) {
                 StartCoroutine(StartGame());
                 canSelect = false;
+                _whiteFlash.SetActive(true);
             }
         }
     }
