@@ -96,7 +96,7 @@ public class GameHUD : MonoBehaviour
                         GameManager.instance.RestartLevel();
                         break;
                     case 2:
-                        Debug.Log("menu");
+                        GameManager.instance.ReturnToMenu();
                         break;
                     default:
                         break;

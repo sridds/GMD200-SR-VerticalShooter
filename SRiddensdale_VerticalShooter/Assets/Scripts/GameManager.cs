@@ -71,16 +71,15 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
     }
 
-    public void RestartLevel()
-    {
-        StartCoroutine(IRestartLevel());
-    }
+    public void RestartLevel() => StartCoroutine(ISceneTransition(SceneManager.GetActiveScene().buildIndex));
 
-    private IEnumerator IRestartLevel()
+    public void ReturnToMenu() => StartCoroutine(ISceneTransition(0));
+
+    private IEnumerator ISceneTransition(int index)
     {
         _fadeTransition.SetTrigger("FadeOut");
         yield return new WaitForSecondsRealtime(_restartTime);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(index);
     }
 
     /// <summary>

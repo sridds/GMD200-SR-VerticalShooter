@@ -11468,7 +11468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 1
   _maxHealth: 100
-  _maxHits: 1
+  _maxHits: 6
   _doIFrames: 1
   _maxIFrames: 15
   _IFrameInterval: 0.05
