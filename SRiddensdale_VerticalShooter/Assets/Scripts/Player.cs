@@ -30,6 +30,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private ParticleSystem _playerDeathParticle;
 
+    [Header("SFX")]
+    [SerializeField]
+    private AudioData _powerupExpireSound;
+
     public Health PlayerHealth { get { return _playerHealth; } }
     public Powerup ActivePowerup { get; private set; }
     public Spawner PlayerGun { get { return _playerGun; } }
@@ -128,6 +132,7 @@ public class Player : MonoBehaviour
     private void PowerupExpire()
     {
         ActivePowerup.OnPowerupExpire -= PowerupExpire;
+        AudioHandler.instance.ProcessAudioData(_powerupExpireSound);
 
         ActivePowerup = null;
     }

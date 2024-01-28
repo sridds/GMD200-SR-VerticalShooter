@@ -53,7 +53,7 @@ MonoBehaviour:
   SpinDuringFire: 1
   FireSound:
     clip: {fileID: 8300000, guid: 5e617d70248bb438ea38e0c6a1bbf54f, type: 3}
-    volume: 0.607
+    volume: 0.9
     randomizePitch: 1
     minPitch: 0.95
     maxPitch: 1
