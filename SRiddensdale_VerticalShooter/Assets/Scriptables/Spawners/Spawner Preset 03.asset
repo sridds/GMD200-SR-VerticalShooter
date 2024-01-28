@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dded864daedc44c5c997094cd76d2c0a, type: 3}
+  m_Name: Spawner Preset 03
+  m_EditorClassIdentifier: 
+  BulletForce: 6
+  BulletPrefab: {fileID: 2872731517860766206, guid: 093ea65e6b2594670b7bf6e4fb0a4515, type: 3}
+  UseCurve: 0
+  SpinRate: 250
+  CurveSpeed: 1
+  CurveAmplitude: 50
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 4
+  OnlyApplyCurveWhileFiring: 0
+  AimAtTarget: 1
+  FireRadius: 0.01
+  BurstCount: 1
+  ProjectilesPerBurst: 4
+  AngleSpread: 80
+  TimeBetweenBursts: 0.35
+  RestTime: 1.5
+  SpinDuringFire: 1
+  FireSound:
+    clip: {fileID: 8300000, guid: 642acf5803d9d47e3862dbacf26bab85, type: 3}
+    volume: 0.714
+    randomizePitch: 1
+    minPitch: 0.95
+    maxPitch: 1
+    spawnPosition: {x: 0, y: 0, z: 0}
+  PlayFireAfterBurst: 0

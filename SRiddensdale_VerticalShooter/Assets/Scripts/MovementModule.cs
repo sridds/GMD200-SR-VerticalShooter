@@ -46,6 +46,9 @@ public class MovementModule : MonoBehaviour
     [SerializeField]
     private bool _chooseRandomNodes;
 
+    [SerializeField]
+    private UnityEvent _onMoveEvent;
+
     // different movement types - node based
     private Queue<MoveNode> moveQueue = new Queue<MoveNode>();
 
@@ -112,6 +115,7 @@ public class MovementModule : MonoBehaviour
         {
             // dequeue the node
             MoveNode node = moveQueue.Dequeue();
+            _onMoveEvent?.Invoke();
 
             // wait for delay (if there is delay)
             yield return new WaitForSeconds(node.Delay);

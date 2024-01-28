@@ -50,6 +50,7 @@ public class Spawner : MonoBehaviour
     }
 
     public void ReadyUp() => ready = true;
+    public void NotReady() => ready = false;
 
     void Update()
     {
