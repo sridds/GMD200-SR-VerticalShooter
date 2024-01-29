@@ -110,6 +110,8 @@ public class Player : MonoBehaviour
     private IEnumerator GameOver()
     {
         GameManager.instance.CallGameOver();
+
+        _playerLowHealthParticles.Stop();
         _spritesHolder.SetActive(false);
         _playerDeathParticle.Play();
 
