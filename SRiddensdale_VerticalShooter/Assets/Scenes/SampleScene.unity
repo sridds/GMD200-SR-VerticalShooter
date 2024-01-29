@@ -385,63 +385,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77790044}
   m_CullTransparentMesh: 1
---- !u!1001 &172781601
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2534570037529559054, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_Name
-      value: Invincible Powerup
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.9849877
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.593766
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8319149313593537416, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ff2c6e4333d654182bea5172142fa30f, type: 3}
 --- !u!1 &207502732
 GameObject:
   m_ObjectHideFlags: 0
@@ -7020,7 +6963,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 777321232}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13f12b90328eb49548380d48df020a5b, type: 3}
   m_Name: 
@@ -7045,6 +6988,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5e75f14823234053be86f954044023a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemiesOverWaves:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _maxWaveEvaluation: 75
+  _minSpawnCount: 3
+  _maxSpawnCount: 20
+  _waveEnemies:
+  - rarity: {x: 9.5, y: 20}
+    enemyPrefab: {fileID: 1576791701729355264, guid: 58452d244b2d94036b68938a32b38bea, type: 3}
+    spawnsPastWave: 0
+    hasSpawnLimit: 0
+    activeEnemy: {fileID: 0}
+  - rarity: {x: 1, y: 9}
+    enemyPrefab: {fileID: 182860456568071371, guid: 0b9c9408a39be49228dccc9ff76d93ba, type: 3}
+    spawnsPastWave: 0
+    hasSpawnLimit: 0
+    activeEnemy: {fileID: 0}
+  - rarity: {x: 12, y: 20}
+    enemyPrefab: {fileID: 3453574108711261407, guid: 5bbb8fb492005470ea0d8b5de75ead47, type: 3}
+    spawnsPastWave: 3
+    hasSpawnLimit: 1
+    activeEnemy: {fileID: 0}
+  _minMaxSpawnX: {x: -6, y: 6}
+  _randomSpawnInterval: {x: 2, y: 4}
+  _waveDowntime: 2
+  _waveBeginSound:
+    clip: {fileID: 8300000, guid: 7622a608933eb40fdacea355127905a1, type: 3}
+    volume: 0.236
+    randomizePitch: 0
+    minPitch: 1
+    maxPitch: 0
+    spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &802339193
 GameObject:
   m_ObjectHideFlags: 0
@@ -19939,4 +19935,3 @@ SceneRoots:
   - {fileID: 777321233}
   - {fileID: 2114405400}
   - {fileID: 905691336}
-  - {fileID: 172781601}
