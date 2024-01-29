@@ -190,7 +190,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.45, y: 0.45}
   m_EdgeRadius: 0
 --- !u!114 &362739820602203985
 MonoBehaviour:
@@ -394,7 +394,7 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 1, g: 0.7294118, b: 0.9215687, a: 1}
-      key1: {r: 0.95294124, g: 0.37647063, b: 1, a: 0}
+      key1: {r: 0.55581, g: 0, b: 1, a: 0}
       key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 0.1254902, g: 0, b: 0.69803923, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -402,7 +402,7 @@ TrailRenderer:
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 193
-      ctime1: 65535
+      ctime1: 65342
       ctime2: 65535
       ctime3: 61873
       ctime4: 0

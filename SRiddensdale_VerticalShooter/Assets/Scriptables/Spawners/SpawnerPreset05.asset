@@ -53,7 +53,7 @@ MonoBehaviour:
   BurstCount: 7
   ProjectilesPerBurst: 2
   AngleSpread: 1
-  TimeBetweenBursts: 0.15
+  TimeBetweenBursts: 0.2
   RestTime: 2
   SpinDuringFire: 0
   FireSound:

@@ -24,12 +24,6 @@ public class WaveSpawner : MonoBehaviour
         [Min(1)]
         public int spawnsPastWave;
 
-        public bool hasSpawnLimit;
-
-        /*[AllowNesting]
-        [ShowIf(nameof(hasSpawnLimit))]
-        public int spawnLimit;*/
-
         [HideInInspector]
         public GameObject activeEnemy;
     }

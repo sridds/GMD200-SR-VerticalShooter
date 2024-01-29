@@ -4979,7 +4979,7 @@ MonoBehaviour:
     Delay: 0
     Mode: 1
     MoveSteps: {x: 0, y: -5}
-    Point: {x: 0, y: 3.5}
+    Point: {x: 0, y: 6.5}
     RandomAroundPoint: {x: 0, y: 0}
     MoveTime: 0.5
     OnReachNode:
