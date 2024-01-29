@@ -27,6 +27,7 @@ public class DeathEvent : MonoBehaviour
         if(_deathParticle != null) Instantiate(_deathParticle, transform.position, Quaternion.identity);
 
         AudioHandler.instance.ProcessAudioData(_deathSound);
+        GameManager.instance.AddKills();
 
         // add points
         if(_deathPointValue > 0) GameManager.instance.AddPoints(_deathPointValue);

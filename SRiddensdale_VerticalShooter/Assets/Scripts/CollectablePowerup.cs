@@ -15,6 +15,7 @@ public class CollectablePowerup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (GameManager.instance.IsGameOver) return;
         // call collect if player triggered the object
         if (collision.TryGetComponent<Player>(out Player player)) {
             // cannot collect two at once

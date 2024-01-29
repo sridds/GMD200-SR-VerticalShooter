@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     // Accessors
     public int Points { get; private set; }
     public float TimePlaying { get; private set; }
+    public int Kills { get; private set; }
     public GameState CurrentGameState { get; private set; }
     public Player ActivePlayer { get { if (cachedPlayer == null) cachedPlayer = FindAnyObjectByType<Player>(); return cachedPlayer; } }
     public bool IsGameOver { get; private set; }
@@ -121,6 +122,11 @@ public class GameManager : MonoBehaviour
         Points += pointAmt;
         OnPointUpdate?.Invoke(Points - pointAmt, Points);
     }
+
+    /// <summary>
+    /// Adds a kill to the kill count
+    /// </summary>
+    public void AddKills() => Kills++;
 
     /// <summary>
     /// calls the lerp time scale coroutine to lerp timeScale over a period lerpTime

@@ -49,7 +49,7 @@ public class GameHUD : MonoBehaviour
     {
         if (newPoints > 9999999) newPoints = 9999999;
         // update the score text accordingly
-        _scoreText.text = $"SCORE:\n{newPoints:D7}";
+        _scoreText.text = $"{newPoints:D7}";
     }
 
     /// <summary>

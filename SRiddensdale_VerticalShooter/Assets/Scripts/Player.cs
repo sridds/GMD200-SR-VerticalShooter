@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private ParticleSystem _playerDeathParticle;
 
+    [SerializeField]
+    private GameObject _results;
+
     [Header("SFX")]
     [SerializeField]
     private AudioData _powerupExpireSound;
@@ -117,7 +120,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.5f);
         AudioHandler.instance.ProcessAudioData(_deathLaugh);
         yield return new WaitForSecondsRealtime(5);
-        GameManager.instance.RestartLevel();
+        //GameManager.instance.RestartLevel();
+        _results.SetActive(true);
     }
 
     /// <summary>
