@@ -75,6 +75,7 @@ public class Spawner : MonoBehaviour
     public void Fire()
     {
         if (activeFireCoroutine != null) return;
+        if (GameManager.instance.IsGameOver) return;
 
         // start fire coroutine
         activeFireCoroutine = StartCoroutine(FireBullets());
