@@ -31,6 +31,7 @@ public class ObjectPooler : MonoBehaviour
     public void SetupEmpties()
     {
         objectPoolEmptyHolder = new GameObject("Pooled Objects");
+        objectPoolEmptyHolder.transform.parent = transform;
 
         audioSourceFolder = new GameObject("Audio Sources");
         audioSourceFolder.transform.SetParent(objectPoolEmptyHolder.transform);

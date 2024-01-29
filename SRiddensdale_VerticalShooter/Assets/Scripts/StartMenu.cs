@@ -50,12 +50,14 @@ public class StartMenu : MonoBehaviour
     {
         // pause music and play select sound
         AudioHandler.instance.PauseMusic();
+        Time.timeScale = 0.0f;
         AudioHandler.instance.ProcessAudioData(_selectSound);
+
         _textAnimation.SetBool("Select", true);
-        yield return new WaitForSeconds(_menuHoldTime);
+        yield return new WaitForSecondsRealtime(_menuHoldTime);
         // fade out 
         _fade.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
         // load game
         SceneManager.LoadScene(1);
     }
