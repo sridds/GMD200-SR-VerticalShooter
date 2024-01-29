@@ -81,6 +81,7 @@ public class Bullet : MonoBehaviour, IDamagable
         if (_curveAlongVelocityPath && _useMovementCurve) {
             // adjust position to follow curve
             pos += transform.right * Time.deltaTime * speedFactor;
+
             transform.position = pos + transform.up * curveValue;
         }
         else if(_useMovementCurve && !_homingEnabled){

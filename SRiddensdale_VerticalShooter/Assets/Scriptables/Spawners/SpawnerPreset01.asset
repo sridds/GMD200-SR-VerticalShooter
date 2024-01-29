@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletForce: 6
   BulletPrefab: {fileID: -3255435354877926624, guid: e5d81968ea65a4609b035cf498d57b54, type: 3}
+  MorePrefabs: 0
+  AllBullets: []
   UseCurve: 0
   SpinRate: 0
   CurveSpeed: 1

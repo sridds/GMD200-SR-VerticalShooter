@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dded864daedc44c5c997094cd76d2c0a, type: 3}
-  m_Name: SpawnerPreset02
+  m_Name: SpawnerPreset05
   m_EditorClassIdentifier: 
-  BulletForce: 6
-  BulletPrefab: {fileID: -3255435354877926624, guid: 64b654c5fdd1548f3a14c2f9f4119819, type: 3}
-  MorePrefabs: 0
-  AllBullets: []
-  SpawnAtSameTime: 0
+  BulletForce: 8
+  BulletPrefab: {fileID: -3255435354877926624, guid: e5d81968ea65a4609b035cf498d57b54, type: 3}
+  MorePrefabs: 1
+  AllBullets:
+  - {fileID: 2305208254582662704, guid: 5f06cd54d32514955aa655461ff7fe3c, type: 3}
+  - {fileID: 5783821199905097856, guid: 734fb3a60cc0344519677a9d12683a5b, type: 3}
+  SpawnAtSameTime: 1
   UseCurve: 0
-  SpinRate: 150
-  CurveSpeed: 1
-  CurveAmplitude: 50
+  SpinRate: 0
+  CurveSpeed: 3
+  CurveAmplitude: 250
   Curve:
     serializedVersion: 2
     m_Curve:
@@ -45,20 +47,20 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  OnlyApplyCurveWhileFiring: 0
-  AimAtTarget: 0
+  OnlyApplyCurveWhileFiring: 1
+  AimAtTarget: 1
   FireRadius: 0.5
-  BurstCount: 2
-  ProjectilesPerBurst: 6
-  AngleSpread: 360
-  TimeBetweenBursts: 0.1
-  RestTime: 1
-  SpinDuringFire: 1
+  BurstCount: 7
+  ProjectilesPerBurst: 2
+  AngleSpread: 1
+  TimeBetweenBursts: 0.15
+  RestTime: 2
+  SpinDuringFire: 0
   FireSound:
-    clip: {fileID: 8300000, guid: f8f57acb12a324231b5be71e971fd9dc, type: 3}
-    volume: 0.68
+    clip: {fileID: 8300000, guid: 5e617d70248bb438ea38e0c6a1bbf54f, type: 3}
+    volume: 0.9
     randomizePitch: 1
-    minPitch: 0.9
-    maxPitch: 1.1
+    minPitch: 0.95
+    maxPitch: 1
     spawnPosition: {x: 0, y: 0, z: 0}
-  PlayFireAfterBurst: 1
+  PlayFireAfterBurst: 0

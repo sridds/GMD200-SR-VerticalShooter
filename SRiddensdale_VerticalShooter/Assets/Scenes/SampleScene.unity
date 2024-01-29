@@ -7622,6 +7622,16 @@ MonoBehaviour:
     spawnsPastWave: 3
     hasSpawnLimit: 1
     activeEnemy: {fileID: 0}
+  - rarity: {x: 1, y: 5}
+    enemyPrefab: {fileID: 8457333899335537706, guid: 7a0e98ec6629f455eace0897d773b319, type: 3}
+    spawnsPastWave: 12
+    hasSpawnLimit: 1
+    activeEnemy: {fileID: 0}
+  - rarity: {x: 8, y: 14}
+    enemyPrefab: {fileID: 1256242468027973382, guid: c823e58c0dec5434d9d6df162e141d9a, type: 3}
+    spawnsPastWave: 8
+    hasSpawnLimit: 1
+    activeEnemy: {fileID: 0}
   _minMaxSpawnX: {x: -6, y: 6}
   _randomSpawnInterval: {x: 2, y: 4}
   _waveDowntime: 2

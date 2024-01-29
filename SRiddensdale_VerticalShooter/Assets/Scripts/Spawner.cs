@@ -107,19 +107,40 @@ public class Spawner : MonoBehaviour
                     currentAngle = 90;
                 }
 
-                // fire a new bullet
-                GameObject newBullet = ObjectPooler.SpawnObject(activeData.BulletPrefab.gameObject, GetBulletSpawnPos(currentAngle), Quaternion.identity, ObjectPooler.PoolType.GameObject);
-                //GameObject newBullet = Instantiate(activeData.BulletPrefab, GetBulletSpawnPos(currentAngle), Quaternion.identity).gameObject;
-                newBullet.transform.right = newBullet.transform.position - transform.position;
+                if(activeData.MorePrefabs && activeData.SpawnAtSameTime) {
+                    foreach(Bullet b in activeData.AllBullets) {
+                        // fire a new bullet
+                        GameObject newBullet = ObjectPooler.SpawnObject(GetBulletPrefab(), GetBulletSpawnPos(currentAngle), Quaternion.identity, ObjectPooler.PoolType.GameObject);
+                        //GameObject newBullet = Instantiate(activeData.BulletPrefab, GetBulletSpawnPos(currentAngle), Quaternion.identity).gameObject;
+                        newBullet.transform.right = newBullet.transform.position - transform.position;
 
-                // update velocity of bullets
-                if(newBullet.TryGetComponent<Bullet>(out Bullet bullet)) {
-                    //rb.velocity = newBullet.transform.right * _bulletForce;
-                    bullet.Launch(newBullet.transform.right * activeData.BulletForce);
+                        // update velocity of bullets
+                        if (newBullet.TryGetComponent<Bullet>(out Bullet bullet))
+                        {
+                            //rb.velocity = newBullet.transform.right * _bulletForce;
+                            bullet.Launch(newBullet.transform.right * activeData.BulletForce);
+                        }
+
+                        // increment current angle by the step
+                        currentAngle += angleStep;
+                    }
                 }
+                else {
+                    // fire a new bullet
+                    GameObject newBullet = ObjectPooler.SpawnObject(GetBulletPrefab(), GetBulletSpawnPos(currentAngle), Quaternion.identity, ObjectPooler.PoolType.GameObject);
+                    //GameObject newBullet = Instantiate(activeData.BulletPrefab, GetBulletSpawnPos(currentAngle), Quaternion.identity).gameObject;
+                    newBullet.transform.right = newBullet.transform.position - transform.position;
 
-                // increment current angle by the step
-                currentAngle += angleStep;
+                    // update velocity of bullets
+                    if (newBullet.TryGetComponent<Bullet>(out Bullet bullet))
+                    {
+                        //rb.velocity = newBullet.transform.right * _bulletForce;
+                        bullet.Launch(newBullet.transform.right * activeData.BulletForce);
+                    }
+
+                    // increment current angle by the step
+                    currentAngle += angleStep;
+                }
             }
 
             currentAngle = startAngle;
@@ -144,6 +165,24 @@ public class Spawner : MonoBehaviour
         //}
 
         activeFireCoroutine = null;
+    }
+
+    int index = 0;
+
+    private GameObject GetBulletPrefab()
+    {
+        if (activeData.MorePrefabs)
+        {
+            GameObject g = activeData.AllBullets[index].gameObject;
+            index++;
+            index = (index % activeData.AllBullets.Length + activeData.AllBullets.Length) % activeData.AllBullets.Length;
+
+            return g;
+        }
+        else
+        {
+            return activeData.BulletPrefab.gameObject;
+        }
     }
 
     /// <summary>

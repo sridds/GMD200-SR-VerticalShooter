@@ -6,7 +6,16 @@ public class ScriptableSpawner : ScriptableObject
 {
     [Header("Bullet Settings")]
     public float BulletForce;
+
+    [HideIf(nameof(MorePrefabs))]
     public Bullet BulletPrefab;
+    public bool MorePrefabs = false;
+
+    [ShowIf(nameof(MorePrefabs))]
+    public Bullet[] AllBullets;
+    [ShowIf(nameof(MorePrefabs))]
+    public bool SpawnAtSameTime = false;
+
 
     [Header("Fire Motion")]
     public bool UseCurve;
