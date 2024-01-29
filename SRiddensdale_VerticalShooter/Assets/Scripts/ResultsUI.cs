@@ -46,7 +46,7 @@ public class ResultsUI : MonoBehaviour
     private void Update()
     {
         // get key to continue
-        if(canContinue && Input.GetKeyDown(KeyCode.Z))
+        if(canContinue && Input.anyKeyDown)
         {
             // allow player to restart level
             GameManager.instance.RestartLevel();

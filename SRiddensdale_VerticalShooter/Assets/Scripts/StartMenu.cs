@@ -38,7 +38,7 @@ public class StartMenu : MonoBehaviour
     private void Update()
     {
         if (canSelect) {
-            if (Input.GetKeyDown(KeyCode.Z)) {
+            if (Input.anyKeyDown) {
                 StartCoroutine(StartGame());
                 canSelect = false;
                 _whiteFlash.SetActive(true);

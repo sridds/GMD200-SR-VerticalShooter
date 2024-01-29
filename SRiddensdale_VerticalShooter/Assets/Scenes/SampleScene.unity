@@ -6917,7 +6917,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PRESS START
+  m_text: PRESS ANY KEY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
   m_sharedMaterial: {fileID: -6964110168661779662, guid: 3d79334555d404f42807d384047b271a, type: 2}
@@ -20665,10 +20665,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1482441828}
+  - {fileID: 79535355}
   - {fileID: 238858424}
   - {fileID: 1308812466}
   - {fileID: 1989617892}
-  - {fileID: 79535355}
   - {fileID: 877783668}
   - {fileID: 2106724097}
   - {fileID: 711766741}
