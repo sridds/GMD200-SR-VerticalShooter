@@ -24,7 +24,7 @@ public class DeathEvent : MonoBehaviour
     private void CallDeath()
     {
         // instantiate only if the death particle exists
-        if(_deathParticle != null) Instantiate(_deathParticle, transform.position, Quaternion.identity);
+        if(_deathParticle != null) ObjectPooler.SpawnObject(_deathParticle.gameObject, transform.position, Quaternion.identity, ObjectPooler.PoolType.ParticleSystem);
 
         AudioHandler.instance.ProcessAudioData(_deathSound);
         GameManager.instance.AddKills();

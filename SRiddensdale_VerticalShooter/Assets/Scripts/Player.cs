@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private ParticleSystem _playerLowHealthParticles;
 
+    [SerializeField]
+    private ParticleSystem _playerDamageParticles;
+
     [Header("Death Animation")]
     [SerializeField]
     private GameObject _spritesHolder;
@@ -96,6 +99,7 @@ public class Player : MonoBehaviour
             CameraShake.instance.Shake(0.6f, 0.4f);
             GameManager.instance.SetTimeScale(0.25f, 0.25f);
             AudioHandler.instance.FadeToPitch(0.15f, 0.8f, true);
+            ObjectPooler.SpawnObject(_playerDamageParticles.gameObject, transform.position, Quaternion.identity, ObjectPooler.PoolType.ParticleSystem);
 
             Invoke(nameof(SetTimeScaleBack), 0.25f);
         }

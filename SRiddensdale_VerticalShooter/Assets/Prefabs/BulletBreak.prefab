@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5491497742451544015}
   - component: {fileID: 5274086535772667980}
   - component: {fileID: 3382797920421326767}
-  - component: {fileID: -1330452011792309217}
+  - component: {fileID: 170040436128984780}
   m_Layer: 0
   m_Name: BulletBreak
   m_TagString: Untagged
@@ -4887,7 +4887,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-1330452011792309217
+--- !u!114 &170040436128984780
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4896,7 +4896,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3864195209262272817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6d3752409f1644738defed9ba3f5786, type: 3}
+  m_Script: {fileID: 11500000, guid: ff8a2b133206844c988f1b11a681edef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _destroyTime: 1
+  _time: 1
