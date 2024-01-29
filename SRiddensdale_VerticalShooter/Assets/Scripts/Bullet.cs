@@ -134,12 +134,23 @@ public class Bullet : MonoBehaviour, IDamagable
         pos = transform.position;
         isLaunched = true;
 
-        target = FindObjectOfType<PlayerMovement>().transform;
+        if(target == null) target = FindObjectOfType<PlayerMovement>().transform;
 
         // must be enabled before evaluating speed
         if(_doSpeedOverCurve) StartCoroutine(EvaluateSpeedOverTime());
         // ensure the object gets destroyed. replace this with a pooling system later down the line
-        Destroy(gameObject, _lifeTime);
+
+        //Destroy(gameObject, _lifeTime);
+        Invoke(nameof(ReturnToPool), _lifeTime);
+    }
+
+    private void ReturnToPool()
+    {
+        aliveTime = 0.0f;
+        rb.velocity = Vector2.zero;
+        isLaunched = false;
+
+        ObjectPooler.ReturnObjectToPool(gameObject);
     }
 
     /// <summary>

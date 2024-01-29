@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -7868671575396876170}
   - component: {fileID: 1794622756428999647}
   - component: {fileID: 917505205267545310}
+  - component: {fileID: 6298668388786946806}
   m_Layer: 7
   m_Name: SnakeBullet
   m_TagString: Untagged
@@ -221,6 +222,7 @@ MonoBehaviour:
     maxPitch: 0
     spawnPosition: {x: 0, y: 0, z: 0}
   _bulletBreakParticle: {fileID: 5274086535772667980, guid: 633c3697855e74676a2b178bef696956, type: 3}
+  _destroyPointValue: 25
 --- !u!50 &-5779153164487161611
 Rigidbody2D:
   serializedVersion: 4
@@ -419,3 +421,16 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &6298668388786946806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647021832833877269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acbd7c95df40a4bfab21246187022214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trail: {fileID: 917505205267545310}

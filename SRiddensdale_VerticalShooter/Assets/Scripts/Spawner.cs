@@ -107,7 +107,8 @@ public class Spawner : MonoBehaviour
                 }
 
                 // fire a new bullet
-                GameObject newBullet = Instantiate(activeData.BulletPrefab, GetBulletSpawnPos(currentAngle), Quaternion.identity).gameObject;
+                GameObject newBullet = ObjectPooler.SpawnObject(activeData.BulletPrefab.gameObject, GetBulletSpawnPos(currentAngle), Quaternion.identity, ObjectPooler.PoolType.GameObject);
+                //GameObject newBullet = Instantiate(activeData.BulletPrefab, GetBulletSpawnPos(currentAngle), Quaternion.identity).gameObject;
                 newBullet.transform.right = newBullet.transform.position - transform.position;
 
                 // update velocity of bullets

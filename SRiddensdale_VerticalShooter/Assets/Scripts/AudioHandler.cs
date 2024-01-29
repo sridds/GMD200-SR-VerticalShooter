@@ -2,7 +2,6 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.VisualScripting.Member;
 
 public class AudioHandler : MonoBehaviour
 {
@@ -211,7 +210,8 @@ public class AudioHandler : MonoBehaviour
         // creates a new audio instance
 
         //GameObject gameObject = ObjectPoolManager.SpawnObject(soundPrefab.gameObject, data.spawnPosition, Quaternion.identity, ObjectPoolManager.PoolType.AudioSource);
-        AudioSource source = Instantiate(soundPrefab, data.spawnPosition, Quaternion.identity);
+        GameObject go = ObjectPooler.SpawnObject(soundPrefab.gameObject, data.spawnPosition, Quaternion.identity, ObjectPooler.PoolType.AudioSource);
+        AudioSource source = go.GetComponent<AudioSource>();
 
         // Set volume
         source.volume = data.volume;
