@@ -7,11 +7,9 @@ public class ReturnObjectToPool : MonoBehaviour
     [SerializeField]
     private float _time;
 
-    // Start is called before the first frame update
-    void OnEnable()
-    {
-        Invoke(nameof(ReturnToPool), _time);
-    }
+
+    // Calls the return to pool function when enabled
+    void OnEnable() => Invoke(nameof(ReturnToPool), _time);
 
     void ReturnToPool() => ObjectPooler.ReturnObjectToPool(gameObject);
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ec302444c5284111944e5da97858584
+guid: 0dfdf4515cc324a0494fe9ba51f6e1d0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Nintendo NES Font
+  - Pixel NES
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

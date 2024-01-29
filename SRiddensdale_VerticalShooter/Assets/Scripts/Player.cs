@@ -160,5 +160,14 @@ public class Player : MonoBehaviour
         //AudioHandler.instance
     }
 
-    private void DashIFrames() => _playerHealth.CallIFrames(15, _playerMovement.DashTime / (float)15);
+    private void DashIFrames()
+    {
+        if (ActivePowerup != null)
+        {
+            // return if already invincible
+            if (ActivePowerup is InvinciblePowerup) return;
+        }
+
+        _playerHealth.CallIFrames(15, _playerMovement.DashTime / (float)15);
+    }
 }

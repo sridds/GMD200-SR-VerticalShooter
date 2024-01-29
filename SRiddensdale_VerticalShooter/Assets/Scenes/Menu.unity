@@ -178,15 +178,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.17954221
+    y: 0.0194508
+    width: 0.64091563
+    height: 0.9610984
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -198,7 +198,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -343,8 +343,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRESS START
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d79334555d404f42807d384047b271a, type: 2}
-  m_sharedMaterial: {fileID: -6964110168661779662, guid: 3d79334555d404f42807d384047b271a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
+  m_sharedMaterial: {fileID: 2199223960760358888, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -368,8 +368,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -807,8 +807,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d79334555d404f42807d384047b271a, type: 2}
-  m_sharedMaterial: {fileID: -6964110168661779662, guid: 3d79334555d404f42807d384047b271a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
+  m_sharedMaterial: {fileID: 2199223960760358888, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -832,8 +832,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1193,8 +1193,8 @@ MonoBehaviour:
     ARROW
     KEYS TO MOVE'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3d79334555d404f42807d384047b271a, type: 2}
-  m_sharedMaterial: {fileID: -6964110168661779662, guid: 3d79334555d404f42807d384047b271a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
+  m_sharedMaterial: {fileID: 2199223960760358888, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1218,8 +1218,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
