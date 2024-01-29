@@ -60,6 +60,9 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField]
     private AudioData _waveBeginSound;
 
+    [SerializeField]
+    private WaveIndicator _waveIndicator;
+
     private int currentWave = 0;
     private bool spawning = false;
     private int enemiesCount;
@@ -94,7 +97,7 @@ public class WaveSpawner : MonoBehaviour
         currentWave++;
 
         // show text for the current wave
-        GameManager.instance.CreateSpecialText("WAVE " + currentWave);
+        _waveIndicator.CallWaveIndicator(currentWave);
         AudioHandler.instance.ProcessAudioData(_waveBeginSound);
 
         // wait a brief moment before spawning just to let the player settle
