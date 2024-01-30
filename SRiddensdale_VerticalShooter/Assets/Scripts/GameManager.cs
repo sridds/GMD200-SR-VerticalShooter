@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     // Accessors
     public int Points { get; private set; }
     public float TimePlaying { get; private set; }
+    public int Waves { get; private set; }
     public int Kills { get; private set; }
     public GameState CurrentGameState { get; private set; }
     public Player ActivePlayer { get { if (cachedPlayer == null) cachedPlayer = FindAnyObjectByType<Player>(); return cachedPlayer; } }
@@ -75,6 +76,8 @@ public class GameManager : MonoBehaviour
         OnGameOver?.Invoke();
         IsGameOver = true;
     }
+
+    public void IncreaseWaves() => Waves++;
 
     public void CreateSpecialText(string txt)
     {

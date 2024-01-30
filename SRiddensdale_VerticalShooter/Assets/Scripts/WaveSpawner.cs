@@ -89,6 +89,7 @@ public class WaveSpawner : MonoBehaviour
         yield return new WaitForSeconds(_waveDowntime);
 
         currentWave++;
+        GameManager.instance.IncreaseWaves();
 
         // show text for the current wave
         _waveIndicator.CallWaveIndicator(currentWave);
@@ -155,8 +156,12 @@ public class WaveSpawner : MonoBehaviour
             {
                 if(roll > e.rarity.x && roll < e.rarity.y)
                 {
-                    if(matches == 0) enemy = e;
-                    else {
+                    if (matches == 0)
+                    {
+                        enemy = e;
+                    }
+                    else
+                    {
                         int choose = Random.Range(0, 2);
                         // set to random of chosen enemies
                         enemy = choose == 0 ? e : enemy;
@@ -166,11 +171,14 @@ public class WaveSpawner : MonoBehaviour
                 }
             }
 
-            if (matches > 0) found = true;
+            if(matches > 0)
+            {
+                found = true;
+            }
 
             iterations++;
             // break out if still can't get an enemy. will use default enemy
-            if (iterations > 20) found = true;
+            if (iterations > 30) found = true;
         } while (!found);
 
         return enemy;

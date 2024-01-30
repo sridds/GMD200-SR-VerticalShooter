@@ -13,6 +13,8 @@ public class ResultsUI : MonoBehaviour
     private TextMeshProUGUI _killsLabel;
     [SerializeField]
     private TextMeshProUGUI _continueLabel;
+    [SerializeField]
+    private TextMeshProUGUI _wavesLabel;
 
     [Header("Counters")]
     [SerializeField]
@@ -21,6 +23,8 @@ public class ResultsUI : MonoBehaviour
     private TextMeshProUGUI _timeCounter;
     [SerializeField]
     private TextMeshProUGUI _killsCounter;
+    [SerializeField]
+    private TextMeshProUGUI _wavesCounter;
 
     [Header("Preferences")]
     [SerializeField]
@@ -130,6 +134,30 @@ public class ResultsUI : MonoBehaviour
         _killsCounter.text = $"{kills:D3}";
         AudioHandler.instance.ProcessAudioData(_reachSound);
 
+        #endregion
+
+        #region Waves
+        yield return new WaitForSecondsRealtime(_showInterval);
+
+        // enable score
+        _wavesLabel.gameObject.SetActive(true);
+        _wavesCounter.gameObject.SetActive(true);
+        AudioHandler.instance.ProcessAudioData(_labelShowSound);
+
+        int waves = 0;
+        int targetWaves = GameManager.instance.Waves;
+
+        while (waves < targetWaves)
+        {
+            yield return new WaitForSecondsRealtime(_scoreCountInterval);
+            waves += 1;
+            _wavesCounter.text = $"{waves:D3}";
+            AudioHandler.instance.ProcessAudioData(_tickSound);
+        }
+
+        waves = targetWaves;
+        _wavesCounter.text = $"{waves:D3}";
+        AudioHandler.instance.ProcessAudioData(_reachSound);
         #endregion
 
         yield return new WaitForSecondsRealtime(_showInterval);

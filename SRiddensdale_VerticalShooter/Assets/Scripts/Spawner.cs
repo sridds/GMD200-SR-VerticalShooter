@@ -35,6 +35,8 @@ public class Spawner : MonoBehaviour
     private bool firing;
     private ScriptableSpawner activeData;
 
+    public bool Firing { get { return firing; } }
+
     #region Powerups
     public void SwapoutData(ScriptableSpawner data) => activeData = data;
     public void ResetData() => activeData = _data;
