@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletForce: 8
   BulletPrefab: {fileID: 4409237641603190484, guid: c9e3362a7b399446195397325a201cdc, type: 3}
+  MorePrefabs: 0
+  AllBullets: []
+  SpawnAtSameTime: 0
   UseCurve: 0
-  SpinRate: 25
+  SpinRate: 15
   CurveSpeed: 1
   CurveAmplitude: 50
   Curve:
