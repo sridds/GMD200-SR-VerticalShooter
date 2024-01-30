@@ -57,7 +57,7 @@ MonoBehaviour:
   RestTime: 2
   SpinDuringFire: 0
   FireSound:
-    clip: {fileID: 8300000, guid: 5e617d70248bb438ea38e0c6a1bbf54f, type: 3}
+    clip: {fileID: 8300000, guid: 9cc0f740b15a74a24a25313d90cf1a39, type: 3}
     volume: 0.9
     randomizePitch: 1
     minPitch: 0.95
