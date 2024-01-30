@@ -42,10 +42,7 @@ public class ResultsUI : MonoBehaviour
 
     private bool canContinue = false;
 
-    private void Start()
-    {
-        StartCoroutine(ShowLabels());
-    }
+    private void Start() => StartCoroutine(ShowLabels());
 
     private void Update()
     {
@@ -163,6 +160,33 @@ public class ResultsUI : MonoBehaviour
         yield return new WaitForSecondsRealtime(_showInterval);
         _continueLabel.gameObject.SetActive(true);
 
+        PromptForName();
+        //canContinue = true;
+    }
+
+    private void PromptForName()
+    {
+        if (PersistentData.NamePrompted) {
+            canContinue = true;
+            return;
+        }
+
+        // get the name input class and let the input handle it
+        NameInput input = FindObjectOfType<NameInput>();
+        input.Prompt();
+        input.OnPromptCompleted += PromptComplete;
+
+        // ensure the name doesn't get prompted more than once
+        PersistentData.NamePrompted = true;
+    }
+
+    /// <summary>
+    /// This is called externally from the NameInput class. When the name input is successful, the leaderboard entry will be recorded
+    /// </summary>
+    /// <param name="name"></param>
+    private void PromptComplete(string name)
+    {
+        Leaderboard.SetLeaderboardEntry(name, GameManager.instance.Points);
         canContinue = true;
     }
 }
