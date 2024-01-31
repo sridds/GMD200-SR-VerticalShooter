@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver) return;
 
+        // update the highscore with the new highscore
+        if (Points > PersistentData.Highscore) PersistentData.Highscore = Points;
+
         OnGameOver?.Invoke();
         IsGameOver = true;
     }
@@ -85,15 +88,27 @@ public class GameManager : MonoBehaviour
         t.SetText(txt);
     }
 
+    public void FadeInOut()
+    {
+        StartCoroutine(FadeOut());
+    }
+
     public void RestartLevel() => StartCoroutine(ISceneTransition(SceneManager.GetActiveScene().buildIndex));
 
     public void ReturnToMenu() => StartCoroutine(ISceneTransition(0));
 
     private IEnumerator ISceneTransition(int index)
     {
-        _fadeTransition.SetTrigger("FadeOut");
+        _fadeTransition.SetBool("FadeOutBool", true);
         yield return new WaitForSecondsRealtime(_restartTime);
         SceneManager.LoadScene(index);
+    }
+
+    private IEnumerator FadeOut()
+    {
+        _fadeTransition.SetBool("FadeOutBool", true);
+        yield return new WaitForSecondsRealtime(1.0f);
+        _fadeTransition.SetBool("FadeOutBool", false);
     }
 
     /// <summary>
@@ -122,6 +137,8 @@ public class GameManager : MonoBehaviour
     /// <param name="pointAmt"></param>
     public void AddPoints(int pointAmt)
     {
+        if (IsGameOver) return;
+
         Points += pointAmt;
         OnPointUpdate?.Invoke(Points - pointAmt, Points);
     }

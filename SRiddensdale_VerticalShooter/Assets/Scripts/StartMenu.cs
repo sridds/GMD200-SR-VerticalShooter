@@ -106,7 +106,7 @@ public class StartMenu : MonoBehaviour
         _startTextAnimation.SetBool("Select", true);
         yield return new WaitForSecondsRealtime(_menuHoldTime);
         // fade out 
-        _fade.SetTrigger("FadeOut");
+        _fade.SetBool("FadeOutBool", true);
         yield return new WaitForSecondsRealtime(0.5f);
         // load game
         SceneManager.LoadScene(1);

@@ -40,20 +40,18 @@ public class ResultsUI : MonoBehaviour
     [SerializeField]
     private AudioData _reachSound;
 
+    private bool promptName = false;
     private bool canContinue = false;
 
     private void Start() => StartCoroutine(ShowLabels());
 
     private void Update()
     {
-        // get key to continue
-        if(canContinue && Input.anyKeyDown)
+        if (promptName && Input.anyKeyDown)
         {
-            // allow player to restart level
-            GameManager.instance.RestartLevel();
             AudioHandler.instance.ProcessAudioData(_continueSound);
-
-            canContinue = false;
+            StartCoroutine(PromptName());
+            promptName = false;
         }
     }
 
@@ -160,14 +158,21 @@ public class ResultsUI : MonoBehaviour
         yield return new WaitForSecondsRealtime(_showInterval);
         _continueLabel.gameObject.SetActive(true);
 
+        promptName = true;
+    }
+
+    private IEnumerator PromptName()
+    {
+        GameManager.instance.FadeInOut();
+        yield return new WaitForSecondsRealtime(0.5f);
         PromptForName();
-        //canContinue = true;
     }
 
     private void PromptForName()
     {
         if (PersistentData.NamePrompted) {
-            canContinue = true;
+            UpdateLeaderboard();
+            GameManager.instance.RestartLevel();
             return;
         }
 
@@ -186,7 +191,17 @@ public class ResultsUI : MonoBehaviour
     /// <param name="name"></param>
     private void PromptComplete(string name)
     {
-        Leaderboard.SetLeaderboardEntry(name, GameManager.instance.Points);
-        canContinue = true;
+        PersistentData.Name = name;
+        UpdateLeaderboard();
+
+        GameManager.instance.RestartLevel();
+        AudioHandler.instance.ProcessAudioData(_continueSound);
+    }
+
+    private void UpdateLeaderboard()
+    {
+        PersistentData.LastScoreValue = GameManager.instance.Points;
+
+        Leaderboard.SetLeaderboardEntry(PersistentData.Name, PersistentData.LastScoreValue);
     }
 }
