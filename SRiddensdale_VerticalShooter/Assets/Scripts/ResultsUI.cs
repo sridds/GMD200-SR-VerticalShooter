@@ -71,7 +71,7 @@ public class ResultsUI : MonoBehaviour
         while(points < targetScore)
         {
             yield return new WaitForSecondsRealtime(_scoreCountInterval);
-            points += 50;
+            points += 150;
             _scoreCounter.text = $"{points:D7}";
             AudioHandler.instance.ProcessAudioData(_tickSound);
         }
@@ -95,7 +95,7 @@ public class ResultsUI : MonoBehaviour
         while (time < targetTime)
         {
             yield return new WaitForSecondsRealtime(_scoreCountInterval);
-            time += 5;
+            time += 15;
             _timeCounter.text = $"{time:D3}";
             AudioHandler.instance.ProcessAudioData(_tickSound);
         }
@@ -145,7 +145,7 @@ public class ResultsUI : MonoBehaviour
         while (waves < targetWaves)
         {
             yield return new WaitForSecondsRealtime(_scoreCountInterval);
-            waves += 1;
+            waves += 3;
             _wavesCounter.text = $"{waves:D3}";
             AudioHandler.instance.ProcessAudioData(_tickSound);
         }

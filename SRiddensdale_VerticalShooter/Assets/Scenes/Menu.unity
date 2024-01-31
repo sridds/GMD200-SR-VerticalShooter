@@ -4506,14 +4506,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'HOLD Z TO FIRE
+  m_text: 'Z - Fire (HOLD) / Confirm
 
-    HOLD X TO SUPERCHARGE
+    X - SUPERCHARGE (HOLD)
 
-    PRESS C TO DASH
+    PRESS C TO
+    DASH
 
-    ARROW
-    KEYS TO MOVE'
+    ARROW KEYS TO MOVE'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
   m_sharedMaterial: {fileID: 2199223960760358888, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
@@ -7177,7 +7177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BETA VERSION 1.1
+  m_text: RELEASE V1.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
   m_sharedMaterial: {fileID: 2199223960760358888, guid: 778e45319d5bc4e34a5ee89bf4e66e63, type: 2}
