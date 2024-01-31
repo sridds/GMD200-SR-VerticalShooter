@@ -24,11 +24,16 @@ public class StartMenu : MonoBehaviour
     [SerializeField]
     private AudioData _menuSelectSound;
     [SerializeField]
+    private AudioData _leaderboardSelect;
+    [SerializeField]
+    private AudioData _backSound;
+    [SerializeField]
     private GameObject _whiteFlash;
     [SerializeField]
     private Leaderboard _leaderboard;
 
     private bool canSelect = false;
+    private bool leaderboardOpen = false;
     int selection = 0;
 
     private void Start()
@@ -61,7 +66,7 @@ public class StartMenu : MonoBehaviour
                 }
                 if(selection == 1)
                 {
-                    _leaderboard.ShowLeaderboard();
+                    StartCoroutine(LeaderboardOpen());
                     canSelect = false;
                 }
             }
@@ -75,6 +80,11 @@ public class StartMenu : MonoBehaviour
             {
                 newSelection = 0;
             }
+        }
+
+        if(leaderboardOpen && Input.GetKeyDown(KeyCode.X))
+        {
+            StartCoroutine(LeaderboardClose());
         }
 
 
@@ -110,5 +120,26 @@ public class StartMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         // load game
         SceneManager.LoadScene(1);
+    }
+
+    private IEnumerator LeaderboardOpen()
+    {
+        AudioHandler.instance.ProcessAudioData(_leaderboardSelect);
+        _fade.SetBool("FadeOutBool", true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        _leaderboard.ShowLeaderboard();
+        _fade.SetBool("FadeOutBool", false);
+        leaderboardOpen = true;
+    }
+
+    private IEnumerator LeaderboardClose()
+    {
+        AudioHandler.instance.ProcessAudioData(_backSound);
+        _fade.SetBool("FadeOutBool", true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        _leaderboard.HideLeaderboard();
+        _fade.SetBool("FadeOutBool", false);
+        leaderboardOpen = false;
+        canSelect = true;
     }
 }

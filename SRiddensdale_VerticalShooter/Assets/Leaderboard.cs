@@ -45,6 +45,16 @@ public class Leaderboard : MonoBehaviour
         GetLeaderboard();
     }
 
+    public void HideLeaderboard()
+    {
+        _leaderboardHolder.SetActive(false);
+        _fetchingText.SetActive(false);
+
+        _scoresHolder.SetActive(false);
+        _namesHolder.SetActive(false);
+        _rankHolder.SetActive(false);
+    }
+
     public void GetLeaderboard()
     {
         LeaderboardCreator.GetLeaderboard(PUBLIC_KEY, (msg) => {
